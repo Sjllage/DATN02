@@ -1,22 +1,9 @@
 const userModel = require('./UserModel.js');
 const bcrypt = require('bcryptjs');
 
-const login = async (sdt, password, email) => {
-    /**
-     *     const user = users.find(u => u.sdt == sdt);
-    console.log(sdt, password, user);
-    if(user && user.password == password) {
-        return user;
-    }
-    return null;
-     */
+const login = async (email, password) => {
     try {
-        //const {sdt, password} = req.body;
-        const user = await userModel.findOne({email: email, sdt: sdt});
-        // if(user) return false;
-        // if(user.password.toString() == password.toString()){
-        //     return user;
-        // }
+        const user = await userModel.findOne({email: email});
         if(user){
             const result = bcrypt.compareSync(password, user.password);
             if(result) {
@@ -29,14 +16,14 @@ const login = async (sdt, password, email) => {
     return false;
 }
 
-const register = async (sdt, password, name, email) => {
+const register = async (name, email, sdt, password) => {
     try {
-        const user = await userModel.findOne({email: email , sdt: sdt, name: name});
+        const user = await userModel.findOne({email: email});
         if(user) return false;
         // mã hóa password
         const salt = bcrypt.genSaltSync(10);
         const hash = bcrypt.hashSync(password, salt);
-        const newUser = {email, sdt, password : hash, name};
+        const newUser = {name, email, sdt, password : hash};
         const u = new userModel(newUser);
         await u.save();
         return true;

@@ -20,8 +20,8 @@ router.post('/login', async function(req, res, next){
   //xử lý đăng nhập  
   //Nếu đăng nhập thành công thì chuyển qua trang chủ
   //Thất bại chuyển trang login
-  const {email, password} = req.body;
-  const result = await userController.login(email, password);
+  const {email, sdt, password} = req.body;
+  const result = await userController.login(email, sdt, password);
   if(result){
     //tao token
     //luu token vao trong session

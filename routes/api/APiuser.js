@@ -15,8 +15,8 @@ const mailer =  require("nodemailer");
 //api register user
 router.post('/register', async(req, res, next)=>{
   try {
-      const {email, sdt, password, name} = req.body;
-      const user = await userController.register(email, sdt, password, name);
+      const {name, email, sdt, password} = req.body;
+      const user = await userController.register(name, email, sdt, password);
       if (user) {
           return res.status(200).json({result: true, user: user});
       } else {
