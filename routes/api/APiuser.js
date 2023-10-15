@@ -8,8 +8,8 @@ var userModel = require('../Users/UserModel.js');
 const bcrypt = require('bcryptjs');
 const mailer =  require("nodemailer");
 // unique string 
-const {v4: uuidv4} = require("uuid");
-require("dotenv").config();
+//const {v4: uuidv4} = require("uuid");
+//require("dotenv").config();
 
 //http://localhost:3000/api/user/register
 //api register user
