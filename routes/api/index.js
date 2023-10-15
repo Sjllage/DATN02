@@ -30,6 +30,21 @@ router.post('/login', async function(req, res, next){
     return res.redirect('/login');
   }
 });
+// http://localhost:3000/login
+router.post('/register', async function(req, res, next){
+  //xử lý đăng nhập  
+  //Nếu đăng nhập thành công thì chuyển qua trang chủ
+  //Thất bại chuyển trang login
+  const {name, email, sdt, password} = req.body;
+  const result = await userController.register(name, email, sdt, password);
+  if(result){
+    //tao token
+    //luu token vao trong session
+    return res.redirect('/');
+  }else{
+    return res.redirect('/register');
+  }
+});
 
 // http://localhost:3000/logout
 router.get('/logout', async(req, res, next) => {
