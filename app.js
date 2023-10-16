@@ -10,7 +10,7 @@ const mongoose = require('mongoose');
 
 var indexRouter = require('./routes/api/index');
 const usersRouter = require('./routes/api/APiuser');
-
+const profileUserRouter = require('./routes/api/APIProfile');
 const usersCpanelRouter = require('./routes/Cpanel/UserCpanel');
 
 var app = express();
@@ -37,6 +37,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 app.use('/api/user', usersRouter);
+app.use('/api/APIProfile',profileUserRouter);
 
 app.use('/cpanel/user', usersCpanelRouter);
 
