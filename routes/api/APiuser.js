@@ -12,22 +12,22 @@ const {v4: uuidv4} = require("uuid");
 // env variable
 require("dotenv").config();
 // nodemailer stuff
-let transperter = nodemailer.createTransport({
+/*let transperter = nodemailer.createTransport({
     service: gmail,
     auth: {
         user: process.env.AUTH.EMAIL,
         pass: process.env.AUTH.PASSWORD
     }
-});
+});*/
 
-transporter.verify((error, succes)=> {
+/*transporter.verify((error, succes)=> {
     if (error) {
         console.log(error);
     }else{
         console.log("Ready for messages ")
         console.log(success);
     }
-})
+})*/
 
 //http://localhost:3000/api/user/register
 //api register user
