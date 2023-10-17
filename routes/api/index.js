@@ -29,7 +29,7 @@ router.post('/login', async function(req, res, next){
     return res.redirect('/login');
   }
 });
-// http://localhost:3000/login
+// http://localhost:3000/register
 /*router.post('/register', async function(req, res, next){
   //xử lý đăng nhập  
   //Nếu đăng nhập thành công thì chuyển qua trang chủ
