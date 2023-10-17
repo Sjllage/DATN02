@@ -12,16 +12,15 @@ router.get('/',function(req, res, next){
 });
 router.get('/login',function(req, res, next){
   //hiển thị trang đăng nhập
-
-  res.render('users/login');
+  res.render('user/login');
 });
 // http://localhost:3000/login
 router.post('/login', async function(req, res, next){
   //xử lý đăng nhập  
   //Nếu đăng nhập thành công thì chuyển qua trang chủ
   //Thất bại chuyển trang login
-  const {email, sdt, password} = req.body;
-  const result = await userController.login(email, sdt, password);
+  const {email, password} = req.body;
+  const result = await userController.login(email, password);
   if(result){
     //tao token
     //luu token vao trong session
@@ -31,7 +30,7 @@ router.post('/login', async function(req, res, next){
   }
 });
 // http://localhost:3000/login
-router.post('/register', async function(req, res, next){
+/*router.post('/register', async function(req, res, next){
   //xử lý đăng nhập  
   //Nếu đăng nhập thành công thì chuyển qua trang chủ
   //Thất bại chuyển trang login
@@ -43,12 +42,11 @@ router.post('/register', async function(req, res, next){
     return res.redirect('/');
   }else{
     return res.redirect('/register');
-  }
-});
+  }*/
 
 // http://localhost:3000/logout
 router.get('/logout', async(req, res, next) => {
-  req.session.destroy();
+  //req.session.destroy();
   res.redirect('/login');
 })
 

@@ -50,8 +50,8 @@ router.post('/register', async(req, res, next)=>{
 //api login user
 router.post('/login', async(req, res, next)=>{
   try {
-      const {email, sdt ,password} = req.body;
-      const user = await userController.login(email, sdt, password);
+      const {email,password} = req.body;
+      const user = await userController.login(email, password);
       if (user) {
           return res.status(200).json({result: true, user: user});
       } else {
