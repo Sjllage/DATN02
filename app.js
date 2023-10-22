@@ -7,11 +7,14 @@ var logger = require('morgan');
 //session, cookies
 const session = require('express-session');
 const mongoose = require('mongoose');
+require('./routes/thuoc/thuocModel');
 
 var indexRouter = require('./routes/api/index');
 const usersRouter = require('./routes/api/APiuser');
+const thuocRouter = require('./routes/api/thuocAPI');
 
 const usersCpanelRouter = require('./routes/Cpanel/UserCpanel');
+const thuocCpanelRouter = require('./routes/Cpanel/thuocCpanel');
 
 var app = express();
 
@@ -35,10 +38,13 @@ app.use(session({
 // localhost:3000/
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/thuoc', thuocRouter);
 
 app.use('/api/user', usersRouter);
+app.use('/api/thuoc', thuocRouter);
 
 app.use('/cpanel/user', usersCpanelRouter);
+app.use('/cpanel/thuoc', thuocCpanelRouter);
 
 
 mongoose.connect('mongodb://127.0.0.1:27017/Healthcare?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false', {

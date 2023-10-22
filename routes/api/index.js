@@ -12,7 +12,11 @@ router.get('/',function(req, res, next){
 });
 router.get('/login',function(req, res, next){
   //hiển thị trang đăng nhập
-  res.render('user/login');
+  res.render('users/login');
+});
+router.get('/register',function(req, res, next){
+  //hiển thị trang đăng nhập
+  res.render('users/register');
 });
 // http://localhost:3000/login
 router.post('/login', async function(req, res, next){
