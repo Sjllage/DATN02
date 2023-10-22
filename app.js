@@ -12,6 +12,7 @@ var indexRouter = require('./routes/api/index');
 const usersRouter = require('./routes/api/APiuser');
 const profileUserRouter = require('./routes/api/APIProfile');
 const usersCpanelRouter = require('./routes/Cpanel/UserCpanel');
+const APIDoctorRouter = require('./routes/api/APIDoctor');
 
 var app = express();
 
@@ -38,6 +39,7 @@ app.use('/users', usersRouter);
 
 app.use('/api/user', usersRouter);
 app.use('/api/APIProfile',profileUserRouter);
+app.use('./api/APIDoctor',APIDoctorRouter);
 
 app.use('/cpanel/user', usersCpanelRouter);
 

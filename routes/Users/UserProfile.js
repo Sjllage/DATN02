@@ -3,20 +3,19 @@ const Schema = mongoose.Schema;
 const ObjectId = Schema.ObjectId;
 const profileUser = new Schema({
     id: { type: ObjectId }, // khóa chính
-    name: {
-        type: String, // kiểu dữ liệu
+    ho_ten: {        type: String, // kiểu dữ liệu
     },
-    email: {
-        type: String, // kiểu dữ liệu
+    ten_tk: {      type: String, // kiểu dữ liệu
     },
-    password: {
-        type: String, // kiểu dữ liệu
+    mat_khau: {       type: String, // kiểu dữ liệu
     },
-    sdt: {
-        type: String, // kiểu dữ liệu
-    },
+    // email: {
+    //     type: String, // kiểu dữ liệu
+    // },
+    sdt: {       type: Number, // kiểu dữ liệu
+ },
     hoat_dong: {
-        type: Boolean, // kiểu dữ liệu
+        type: String, // kiểu dữ liệu
     },
 });
 module.exports = mongoose.models.profileUser || mongoose.model('profileUser', profileUser);
