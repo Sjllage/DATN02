@@ -48,12 +48,12 @@ router.get('/search-by-name', async (req,res,next) => {
 // http://localhost:3000/api/thuoc/new
 router.post('/new',// [checkTokenApp, uploadFile.single('image')],
  async (req, res, next) => {
-    // 192.168.1.105 ở nhà
+    // 192.168.1.5 ở nhà
     // 172.16.86.230 ở trường
     try{
         let {file,body} = req;
         if(file) {
-            file = `http://172.16.86.230:3000/img/${file.filename}`;
+            file = `http://192.168.1.5:3000/img/${file.filename}`;
             body = {...body, image: file};
         }
         const {name, price, quantity} = body;
@@ -71,7 +71,7 @@ router.post('/upload-image', [uploadFile.single('image')], (req, res, next) => {
     try{
         const {file} = req;
         if(file){
-            const url = `http://192.168.1.105:3000/img/${file.filename}`
+            const url = `http://192.168.1.5:3000/img/${file.filename}`
             return res.status(200).json({result: true, url: url});
         }
         return res.status(400).json({result: true, url: null});
@@ -89,7 +89,7 @@ router.post('/upload-images', [uploadFile.array('image')], (req, res, next) => {
         if(files && files.length > 0){
             const urls = [];
             for(let i = 0; i < files.length; i++){
-                const url = `http://192.168.1.105:3000/img/${files[i].filename}`
+                const url = `http://192.168.1.5:3000/img/${files[i].filename}`
                 urls.push(url);
             }
             return res.status(200).json({result: true, urls: urls});
