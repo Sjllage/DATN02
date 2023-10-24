@@ -47,6 +47,7 @@ app.use('./api/APIDoctor',APIDoctorRouter);
 
 app.use('/cpanel/user', usersCpanelRouter);
 app.use('/cpanel/thuoc', thuocCpanelRouter);
+app.use('/cpanel/doctor', doctorCpanelRouter);
 
 
 mongoose.connect('mongodb://127.0.0.1:27017/Healthcare?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false', {
