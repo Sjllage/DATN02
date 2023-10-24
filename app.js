@@ -12,6 +12,7 @@ require('./routes/thuoc/thuocModel');
 var indexRouter = require('./routes/api/index');
 const usersRouter = require('./routes/api/APiuser');
 const thuocRouter = require('./routes/api/thuocAPI');
+const APIDoctorRouter = require('./routes/api/APIDoctor');
 
 const usersCpanelRouter = require('./routes/Cpanel/UserCpanel');
 const thuocCpanelRouter = require('./routes/Cpanel/thuocCpanel');
@@ -42,6 +43,7 @@ app.use('/thuoc', thuocRouter);
 
 app.use('/api/user', usersRouter);
 app.use('/api/thuoc', thuocRouter);
+app.use('./api/APIDoctor',APIDoctorRouter);
 
 app.use('/cpanel/user', usersCpanelRouter);
 app.use('/cpanel/thuoc', thuocCpanelRouter);
