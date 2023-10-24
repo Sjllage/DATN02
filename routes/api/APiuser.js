@@ -7,10 +7,11 @@ const userController = require('../Users/UserController.js');
 var userModel = require('../Users/UserModel.js');
 const bcrypt = require('bcryptjs');
 const mailer =  require("nodemailer");
+const {validationRegister} = require('../../middle/Validation.js');
 // unique string 
 const {v4: uuidv4} = require("uuid");
 // env variable
-require("dotenv").config();
+//require("dotenv").config();
 // nodemailer stuff
 /*let transperter = nodemailer.createTransport({
     service: gmail,
@@ -31,7 +32,7 @@ require("dotenv").config();
 
 //http://localhost:3000/api/user/register
 //api register user
-router.post('/register', async(req, res, next)=>{
+router.post('/register', [validationRegister], async(req, res, next)=>{
   try {
       const {name, email, sdt, password} = req.body;
       const user = await userController.register(name, email, sdt, password);

@@ -3,6 +3,7 @@ var router = express.Router();
 const userController = require('../Users/UserController')
 const jwt = require('jsonwebtoken');
 //const {checkTokenCpanel} = require('../../middle/Authen');
+const {validationRegister} = require('../../middle/Validation.js');
 
 /* GET home page. */
 // http://localhost:3000
@@ -34,8 +35,8 @@ router.post('/login', async function(req, res, next){
   }
 });
 // http://localhost:3000/register
-/*router.post('/register', async function(req, res, next){
-  //xử lý đăng nhập  
+router.post('/register', [validationRegister], async function(req, res, next){
+  //xử lý đăng ký  
   //Nếu đăng nhập thành công thì chuyển qua trang chủ
   //Thất bại chuyển trang login
   const {name, email, sdt, password} = req.body;
@@ -46,8 +47,8 @@ router.post('/login', async function(req, res, next){
     return res.redirect('/');
   }else{
     return res.redirect('/register');
-  }*/
-
+  }
+});
 // http://localhost:3000/logout
 router.get('/logout', async(req, res, next) => {
   //req.session.destroy();
