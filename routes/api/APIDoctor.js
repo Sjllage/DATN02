@@ -1,58 +1,114 @@
+const express = require('express');
+const router = express.Router();
+const doctorControllers = require('../doctor/DoctorControllers');
+//const {checkTokenApp} = require('../../middle/Authen');
+const uploadFile = require('../../middle/UploadFile');
 
-var doctorProduct = require("../Users/DoctorContrller");
-var express = require("express");
-var router = express.Router();
 
-router.get("/", async function (req, res, next) {
-  var data = await doctorProduct.find();
-  res.json(data);
+// http://localhost:3000/api/APIDoctor/get-all
+// api get all Doctors
+router.get('/get-all', async(req, res,next) => {
+    try{
+        const Doctors = await doctorControllers.getAllDoctors();
+        return res.status(200).json({result: true, Doctor: Doctors});
+    }catch(error){
+        console.log("Get all error: " , error);
+        return res.status(500).json({result: false, Doctor: null});
+    }
 });
-//http:localhost:3000/doctor/addDoctor
-router.post("/add", async function (req, res, next) {
-    try {
-      const { id,name,sdt,password } = req.body;
-  
-      const newProduct = {
-        id,
-        name,
-        sdt,
-        password
-      };
-      await doctorProduct.create(newProduct);
-      res.json({ status: 1, message: "Thêm  thành công" });
-    } catch (err) {
-      res.json({ status: 0, message: "Thêm thất bại" });
-    }
-  });
-  
 
-  router.post("/editDoctor", async function (req, res, next) {
-    try {
-      const { idCate, name, sdt, password } = req.body;
-  
-      var item = await doctorProduct.findById(id);
-      if (item) {
-        item.idCate = idCate ? idCate : item.idCate;
-        item.name = name ? name : item.name;
-        item.sdt = sdt ? sdt : item.sdt;
-        item.password = password ? password : item.password;
-        await item.save();
-        res.json({ status: 1, message: "Sửa thành công" });
-      }
-    } catch (err) {
-      res.json({ status: 0, message: "Sửa thất bại" });
-    }
-  });
-  router.get("/delete", async function (req, res, next) {
-    try {
-      var id = req.query.id;
-      await doctorProduct.findByIdAndDelete(id);
-      res.json({ status: 1, message: "Xóa sản phẩm thành công" });
-    } catch (err) {
-      res.json({ status: 0, message: "Xóa sản phẩm thất bại", err: err });
-    }
-  });
-  
-  
+// http://localhost:3000/api/APIDoctor/get-by-id
+// api get by id
+router.get('/get-by-id', async (req,res,next) => {
+    try{
+        const {id} = req.query;
+        const Doctor = await doctorControllers.getDoctorById(id);
+        return res.status(200).json({result: true, Doctor: Doctor});
 
-module.exports = router;
+    }catch(error){
+        console.log("Get by id error: ", error);
+        return res.status(500).json({result: false, Doctor: null});
+    }
+
+});
+
+// http://localhost:3000/api/Doctor/search-by-name?name=
+// api search by name
+router.get('/search-by-name', async (req,res,next) => {
+    try{
+        const {name} = req.query;
+        const Doctors = await doctorControllers.searchedDoctorByName(name);
+        return res.status(200).json({result: true, Doctor: Doctors});
+    }catch(error){
+        console.log("Get by id error: ", error);
+        return res.status(500).json({result: false, Doctors: null});
+    }
+});
+
+// http://localhost:3000/api/Doctor/new
+router.post('/new', [uploadFile.single('image')], async (req, res, next) => {
+    // 192.168.1.5 ở nhà
+    // 172.16.86.230 ở trường
+    try{
+        let {file,body} = req;
+        if(file) {
+            file = `http://192.168.1.5:3000/img/thuoc/${file.filename}`;
+            body = {...body, image: file};
+        }
+        const {name, email, sdt, password, mota} = body;
+        await doctorControllers.addNewDoctor(name, email, sdt, password, mota);
+        return res.status(200).json({result: true, Doctor: null});
+    }catch(error){
+        console.log("New Doctor error: ", error);
+        return res.status(500).json({result: false, Doctor: null});
+    }
+});
+
+// api upload ảnh sản phẩm 
+// http://localhost:3000/api/doctor/upload-image-doctor
+router.post('/upload-image-doctor', [uploadFile.single('image')], (req, res, next) => {
+    try{
+        const {file} = req;
+        if(file){
+            const url = `http://192.168.1.5:3000/img/thuoc/${file.filename}`
+            return res.status(200).json({result: true, url: url});
+        }
+        return res.status(400).json({result: true, url: null});
+     }catch(error){
+        console.log("Upload image error: ", error);
+        return res.status(500).json({result: false});
+    }
+});
+
+// api upload nhiều ảnh 
+// http://localhost:3000/api/Doctor/upload-images
+router.post('/upload-images-doctor', [uploadFile.array('image')], (req, res, next) => {
+    try{
+        const {files} = req;
+        if(files && files.length > 0){
+            const urls = [];
+            for(let i = 0; i < files.length; i++){
+                const url = `http://192.168.1.5:3000/img/thuoc/${files[i].filename}`
+                urls.push(url);
+            }
+            return res.status(200).json({result: true, urls: urls});
+        }
+        return res.status(400).json({result: true, urls: null});
+    }catch(error){
+        console.log("Upload image error: ", error);
+        return res.status(500).json({result: false});
+    }
+});
+
+// http://localhost:3000/Doctor/1/delete
+router.post("/:id/delete", async (req, res, next) => {
+    try {
+        const { id } = req.params;
+        await doctorControllers.deleteDoctorById(id);
+        return res.json({ status: true });
+    } catch (error) {
+        return res.json({ status: false })
+    }
+
+});
+module.exports = router; 

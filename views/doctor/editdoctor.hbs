@@ -31,7 +31,7 @@
                                             <small class="text-muted float-end">Merged input group</small>
                                         </div>
                                         <div class="card-body">
-                                            <form method="post" action="/cpanel/thuoc/{{thuoc._id}}/edit"
+                                            <form method="post" action="/cpanel/doctor/{{doctor._id}}/edit"
                                                 enctype="multipart/form-data">
                                                 <div class="mb-3">
                                                     <label class="form-label" for="basic-icon-default-fullname">
@@ -40,46 +40,72 @@
                                                         <span id="basic-icon-default-fullname2"
                                                             class="input-group-text"><i class="bx bx-user"></i></span>
                                                         <input type="text" class="form-control" name="name"
-                                                            id="basic-icon-default-fullname" placeholder="Name"
+                                                            id="basic-icon-default-fullname" placeholder="Tên"
                                                             aria-label="John Doe"
                                                             aria-describedby="basic-icon-default-fullname2"
-                                                            value="{{thuoc.name}}" />
+                                                            value="{{doctor.name}}" />
                                                     </div>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label"
-                                                        for="basic-icon-default-company">Price</label>
+                                                        for="basic-icon-default-company">Email</label>
+                                                    <div class="input-group input-group-merge">
+                                                        <span id="basic-icon-default-company2"
+                                                            class="input-group-text"><i
+                                                                class="bx bx-buildings"></i></span>
+                                                        <input type="text" id="basic-icon-default-company"
+                                                            class="form-control" name="email" placeholder="Email"
+                                                            aria-label="ACME Inc."
+                                                            aria-describedby="basic-icon-default-company2"
+                                                            value="{{doctor.email}}" />
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label"
+                                                        for="basic-icon-default-company">Số điện thoại</label>
                                                     <div class="input-group input-group-merge">
                                                         <span id="basic-icon-default-company2"
                                                             class="input-group-text"><i
                                                                 class="bx bx-buildings"></i></span>
                                                         <input type="number" id="basic-icon-default-company"
-                                                            class="form-control" name="price" placeholder="Price"
+                                                            class="form-control" name="sdt" placeholder="Số điện thoại"
                                                             aria-label="ACME Inc."
                                                             aria-describedby="basic-icon-default-company2"
-                                                            value="{{thuoc.price}}" />
+                                                            value="{{doctor.sdt}}" />
                                                     </div>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label"
-                                                        for="basic-icon-default-company">Quantity</label>
+                                                        for="basic-icon-default-company">Mô tả</label>
                                                     <div class="input-group input-group-merge">
                                                         <span id="basic-icon-default-company2"
                                                             class="input-group-text"><i
                                                                 class="bx bx-buildings"></i></span>
-                                                        <input type="number" id="basic-icon-default-company"
-                                                            class="form-control" name="quantity" placeholder="Quantity"
+                                                        <input type="text" id="basic-icon-default-company"
+                                                            class="form-control" name="mota" placeholder="Mô tả"
                                                             aria-label="ACME Inc."
                                                             aria-describedby="basic-icon-default-company2"
-                                                            value="{{thuoc.quantity}}" />
+                                                            value="{{doctor.mota}}" />
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="custom-file">
                                                         <input onchange="displayImg(this)" name="image" type="file" class="custom-file-input">
                                                         <label class="custom-file-label">Choose File</label>
-                                                        <img id="img" src="{{thuoc.image}}" width="100" height="100">
+                                                        <img id="img" src="{{doctor.image}}" width="100" height="100">
                                                     </div>
+                                                </div>
+                                                <div>
+                                                    <label>Vai trò</label>
+                                                    <select name="vaitro" class="form-control">
+                                                        {{#each vaitros}}
+                                                        {{#if this.selected}}
+                                                        <option select value="{{this._id}}">{{this.name}}</option>
+                                                        {{else}}
+                                                        <option value="{{this._id}}">{{this.name}}</option>
+                                                        {{/if}}
+                                                        {{/each}}
+                                                    </select>
                                                 </div>
                                                 <button type="submit" class="btn btn-primary">Submit</button>
                                             </form>

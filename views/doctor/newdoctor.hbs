@@ -31,7 +31,7 @@
                                             <small class="text-muted float-end">Merged input group</small>
                                         </div>
                                         <div class="card-body">
-                                            <form method="post" action="/cpanel/thuoc/new"
+                                            <form method="post" action="/cpanel/doctor/new"
                                                 enctype="multipart/form-data">
                                                 <div class="mb-3">
                                                     <label class="form-label" for="basic-icon-default-fullname">
@@ -47,26 +47,52 @@
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label"
-                                                        for="basic-icon-default-company">Price</label>
+                                                        for="basic-icon-default-company">Email</label>
                                                     <div class="input-group input-group-merge">
                                                         <span id="basic-icon-default-company2"
                                                             class="input-group-text"><i
                                                                 class="bx bx-buildings"></i></span>
-                                                        <input type="number" id="basic-icon-default-company"
-                                                            class="form-control" name="price" placeholder="Price"
+                                                        <input type="text" id="basic-icon-default-company"
+                                                            class="form-control" name="email" placeholder="Email"
                                                             aria-label="ACME Inc."
                                                             aria-describedby="basic-icon-default-company2" />
                                                     </div>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label"
-                                                        for="basic-icon-default-company">Quantity</label>
+                                                        for="basic-icon-default-company">Mật khẩu</label>
+                                                    <div class="input-group input-group-merge">
+                                                        <span id="basic-icon-default-company2"
+                                                            class="input-group-text"><i
+                                                                class="bx bx-buildings"></i></span>
+                                                        <input type="text" id="basic-icon-default-company"
+                                                            class="form-control" name="password" placeholder="Mật khẩu"
+                                                            aria-label="ACME Inc."
+                                                            aria-describedby="basic-icon-default-company2" />
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label"
+                                                        for="basic-icon-default-company">Số điện thoại</label>
                                                     <div class="input-group input-group-merge">
                                                         <span id="basic-icon-default-company2"
                                                             class="input-group-text"><i
                                                                 class="bx bx-buildings"></i></span>
                                                         <input type="number" id="basic-icon-default-company"
-                                                            class="form-control" name="quantity" placeholder="Quantity"
+                                                            class="form-control" name="sdt" placeholder="Số điện thoại"
+                                                            aria-label="ACME Inc."
+                                                            aria-describedby="basic-icon-default-company2" />
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label"
+                                                        for="basic-icon-default-company">Mô tả</label>
+                                                    <div class="input-group input-group-merge">
+                                                        <span id="basic-icon-default-company2"
+                                                            class="input-group-text"><i
+                                                                class="bx bx-buildings"></i></span>
+                                                        <input type="text" id="basic-icon-default-company"
+                                                            class="form-control" name="mota" placeholder="Mô tả"
                                                             aria-label="ACME Inc."
                                                             aria-describedby="basic-icon-default-company2" />
                                                     </div>
@@ -76,6 +102,14 @@
                                                         <input name="image" type="file" class="custom-file-input">
                                                         <label class="custom-file-label">Choose File</label>
                                                     </div>
+                                                </div>
+                                                <div>
+                                                    <label>Vai trò</label>
+                                                    <select name="vaitro" class="form-control">
+                                                        {{#each vaitros}}
+                                                        <option value="{{this._id}}">{{this.name}}</option>
+                                                        {{/each}}
+                                                    </select>
                                                 </div>
                                                 </p>
                                                 <button type="submit" class="btn btn-primary">Submit</button>
