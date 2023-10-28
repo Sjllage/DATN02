@@ -44,8 +44,8 @@ async (req, res, next) => {
             file = `http://192.168.1.5:3000/img/thuoc/${file.filename}`;
             body = { ...body, image: file };
         }
-        const { name, price, quantity} = body;
-        const result = await thuocController.addNewthuoc(name, price, quantity);
+        const { name, price, quantity, image} = body;
+        const result = await thuocController.addNewthuoc(name, price, quantity, image);
         if (result) {
             return res.redirect('/cpanel/thuoc/new');
         } else {

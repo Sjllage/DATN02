@@ -56,8 +56,8 @@ router.post('/new',// [checkTokenApp, uploadFile.single('image')],
             file = `http://192.168.1.5:3000/img/${file.filename}`;
             body = {...body, image: file};
         }
-        const {name, price, quantity} = body;
-        await thuocController.addNewthuoc(name ,price ,quantity);
+        const {name, price, quantity, image} = body;
+        await thuocController.addNewthuoc(name ,price ,quantity, image);
         return res.status(200).json({result: true, thuoc: null});
     }catch(error){
         console.log("New thuoc error: ", error);

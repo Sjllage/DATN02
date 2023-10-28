@@ -55,8 +55,8 @@ router.post('/new', [uploadFile.single('image')], async (req, res, next) => {
             file = `http://192.168.1.5:3000/img/thuoc/${file.filename}`;
             body = {...body, image: file};
         }
-        const {name, email, sdt, password, mota} = body;
-        await doctorControllers.addNewDoctor(name, email, sdt, password, mota);
+        const {name, email, sdt, password, mota, image, vaitro} = body;
+        await doctorControllers.addNewDoctor(name, email, sdt, password, mota, image, vaitro);
         return res.status(200).json({result: true, Doctor: null});
     }catch(error){
         console.log("New Doctor error: ", error);
