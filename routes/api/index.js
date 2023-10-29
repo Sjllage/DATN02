@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const userController = require('../Users/UserController')
+const adminController = require('../admin/adminController')
 const jwt = require('jsonwebtoken');
 //const {checkTokenCpanel} = require('../../middle/Authen');
 const {validationRegister} = require('../../middle/Validation.js');
@@ -8,16 +9,38 @@ const {validationRegister} = require('../../middle/Validation.js');
 /* GET home page. */
 // http://localhost:3000
 router.get('/',function(req, res, next){
-  //hiển thị trang chủ
+  //hiển thị trang chủ user
   res.render('index');
 });
+
+router.get('/admin',function(req, res, next){
+  //hiển thị trang chủ admin
+  res.render('indexadmin');
+});
+
 router.get('/login',function(req, res, next){
   //hiển thị trang đăng nhập
   res.render('users/login');
 });
+
 router.get('/register',function(req, res, next){
   //hiển thị trang đăng nhập
   res.render('users/register');
+});
+
+router.get('/admin/login',function(req, res, next){
+  //hiển thị trang đăng nhập
+  res.render('admin/login');
+});
+// http://localhost:3000/admin/login
+router.post('/admin/login', async function(req, res, next){
+  const {name, password} = req.body;
+  const result = await adminController.login(name, password);
+  if(result){
+    return res.redirect('/admin/login');
+  }else{
+    return res.redirect('/admin');
+  }
 });
 // http://localhost:3000/login
 router.post('/login', async function(req, res, next){

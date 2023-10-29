@@ -1,12 +1,12 @@
 <div class="container-xxl">
       <div class="authentication-wrapper authentication-basic container-p-y">
         <div class="authentication-inner">
-          <!-- Register Card -->
+          <!-- Register -->
           <div class="card">
             <div class="card-body">
               <!-- Logo -->
               <div class="app-brand justify-content-center">
-                <a href="index.html" class="app-brand-link gap-2">
+                <a class="app-brand-link gap-2">
                   <span class="app-brand-logo demo">
                     <svg
                       width="25"
@@ -66,45 +66,29 @@
                 </a>
               </div>
               <!-- /Logo -->
-              <h4 class="mb-2">Adventure starts here 🚀</h4>
-              <p class="mb-4">Make your app management easy and fun!</p>
+              <h4 class="mb-2">Welcome to Sneat! 👋</h4>
+              <p class="mb-4">Please sign-in to your account and start the adventure</p>
 
-              <form id="formAuthentication" class="mb-3" method="POST" action="/register">
+              <form id="formAuthentication" class="mb-3" method="POST" action="/admin/login">
                 <div class="mb-3">
-                  <label for="name" class="form-label">name</label>
+                  <label for="name" class="form-label">Name</label>
                   <input
                     type="text"
                     class="form-control"
-                    id="name"
+                    id="email"
                     name="name"
                     placeholder="Xin mời nhập name"
                     autofocus
                   />
                 </div>
-                 <div class="mb-3">
-                  <label for="email" class="form-label">Email</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="email"
-                    name="email"
-                    placeholder="Xin mời nhập email"
-                    autofocus
-                  />
-                </div>
-                <div class="mb-3">
-                  <label for="sdt" class="form-label">Số điện thoại</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="sdt"
-                    name="sdt"
-                    placeholder="Xin mời nhập số điện thoại"
-                    autofocus
-                  />
-                </div>
+              
                 <div class="mb-3 form-password-toggle">
-                  <label class="form-label" for="password">Password</label>
+                  <div class="d-flex justify-content-between">
+                    <label class="form-label" for="password">Password</label>
+                    <a href="auth-forgot-password-basic.html">
+                      <small>Forgot Password?</small>
+                    </a>
+                  </div>
                   <div class="input-group input-group-merge">
                     <input
                       type="password"
@@ -117,30 +101,19 @@
                     <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                   </div>
                 </div>
-
                 <div class="mb-3">
                   <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="terms-conditions" name="terms" />
-                    <label class="form-check-label" for="terms-conditions">
-                      I agree to
-                      <a href="javascript:void(0);">privacy policy & terms</a>
-                    </label>
+                    <input class="form-check-input" type="checkbox" id="remember-me" />
+                    <label class="form-check-label" for="remember-me"> Remember Me </label>
                   </div>
                 </div>
-                <button class="btn btn-primary d-grid w-100"  type="submit" >Sign up</button>
+                <div class="mb-3">
+                  <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
+                </div>
               </form>
-
-              <p class="text-center">
-                <span>Already have an account?</span>
-                <a href="/register">
-                  <span>Sign in instead</span>
-                </a>
-              </p>
             </div>
           </div>
-          <!-- Register Card -->
+          <!-- /Register -->
         </div>
       </div>
     </div>
-
-    <!-- / Content -->
