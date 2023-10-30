@@ -7,4 +7,4 @@ const adminSchema = new Schema({
     name: { type: String },
     password: { type: String },
 });
-module.exports = mongoose.models.admin || mongoose.model('admin' ,adminSchema);
+module.exports = mongoose.models.admin || mongoose.model('admin' , adminSchema);

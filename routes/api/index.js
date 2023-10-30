@@ -37,9 +37,9 @@ router.post('/admin/login', async function(req, res, next){
   const {name, password} = req.body;
   const result = await adminController.login(name, password);
   if(result){
-    return res.redirect('/admin/login');
-  }else{
     return res.redirect('/admin');
+  }else{
+    return res.redirect('/admin/login');
   }
 });
 // http://localhost:3000/login

@@ -7,16 +7,16 @@ const adminController = require('../admin/adminController.js');
 router.post('/login', async(req, res, next)=>{
     try {
         const {name,password} = req.body;
-        const user = await adminController.login(name, password);
-        if (user) {
-            return res.status(200).json({result: true, user: user});
+        const admin = await adminController.login(name, password);
+        if (admin) {
+            return res.status(200).json({result: true, admin: admin});
         } else {
-            return res.status(400).json({result: false, user: null});
+            return res.status(400).json({result: false, admin: null});
         }
     } catch (error) {
         console.log(error);
         next(error); //la danh cho web
-        return res.status(500).json({result: false, user: null});
+        return res.status(500).json({result: false, admin: null});
     }
 });
 

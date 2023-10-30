@@ -3,11 +3,11 @@ const bcrypt = require('bcryptjs');
 
 const login = async (name, password) => {
     try {
-        const user = await adminModel.findOne({name: name});
-        if(user){
-            const result = bcrypt.compareSync(password, user.password);
+        const admin = await adminModel.findOne({name: name});
+        if(admin){
+            const result = await adminModel.find({password: password});
             if(result) {
-                return result ? user : false;
+                return result ? admin : false;
             }
         }
     } catch (error) {
