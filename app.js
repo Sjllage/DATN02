@@ -11,6 +11,8 @@ require('./routes/vaitro/VaitroModel');
 require('./routes/thuoc/thuocModel');
 require('./routes/doctor/DoctorModel');
 require('./routes/admin/adminModel');
+require('./routes/thuoc/themDonThuoc.js');
+require('./routes/Users/CuocHenForUser.js');
 
 var indexRouter = require('./routes/api/index');
 const usersRouter = require('./routes/api/APiuser');
@@ -18,6 +20,8 @@ const thuocRouter = require('./routes/api/thuocAPI');
 const APIDoctorRouter = require('./routes/api/APIDoctor');
 const APIvaitroRouter = require('./routes/api/APIvaitro');
 const APIadminRouter = require('./routes/api/APIadmin');
+const APiDonThuocRouter = require('./routes/api/APiDonThuoc.js');
+const APiCuocHenRouter = require('./routes/api/APICuocHen.js');
 
 const usersCpanelRouter = require('./routes/Cpanel/UserCpanel');
 const thuocCpanelRouter = require('./routes/Cpanel/thuocCpanel');
@@ -55,6 +59,8 @@ app.use('/api/thuoc', thuocRouter);
 app.use('/api/APIDoctor',APIDoctorRouter);
 app.use('/api/APIvaitro',APIvaitroRouter);
 app.use('/api/APIadmin',APIadminRouter);
+app.use('./api/APIDonThuoc',APiDonThuocRouter);
+app.use('./api/APICuocHen',APiCuocHenRouter);
 
 app.use('/cpanel/user', usersCpanelRouter);
 app.use('/cpanel/thuoc', thuocCpanelRouter);
