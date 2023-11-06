@@ -11,6 +11,7 @@ require('./routes/vaitro/VaitroModel');
 require('./routes/thuoc/thuocModel');
 require('./routes/doctor/DoctorModel');
 require('./routes/admin/adminModel');
+require('./routes/lichkham/lichkhamModel.js');
 
 var indexRouter = require('./routes/api/index');
 const usersRouter = require('./routes/api/APiuser');
@@ -18,11 +19,13 @@ const thuocRouter = require('./routes/api/thuocAPI');
 const APIDoctorRouter = require('./routes/api/APIDoctor');
 const APIvaitroRouter = require('./routes/api/APIvaitro');
 const APIadminRouter = require('./routes/api/APIadmin');
+const APIlichkhamRouter = require('./routes/api/APIlichkham.js');
 
 const usersCpanelRouter = require('./routes/Cpanel/UserCpanel');
 const thuocCpanelRouter = require('./routes/Cpanel/thuocCpanel');
 const doctorCpanelRouter = require('./routes/Cpanel/doctorCpanel');
 const adminCpanelRouter = require('./routes/Cpanel/adminCpanel.js');
+const lichkhamCpanelRouter = require('./routes/Cpanel/lichkhamCpanel.js');
 
 var app = express();
 
@@ -49,17 +52,20 @@ app.use('/users', usersRouter);
 app.use('/thuoc', thuocRouter);
 app.use('/admin', APIadminRouter);
 app.use('/doctor', APIDoctorRouter);
+app.use('/lichkham', APIlichkhamRouter);
 
 app.use('/api/user', usersRouter);
 app.use('/api/thuoc', thuocRouter);
 app.use('/api/APIDoctor',APIDoctorRouter);
 app.use('/api/APIvaitro',APIvaitroRouter);
 app.use('/api/APIadmin',APIadminRouter);
+app.use('/api/APIlichkham', APIlichkhamRouter);
 
 app.use('/cpanel/user', usersCpanelRouter);
 app.use('/cpanel/thuoc', thuocCpanelRouter);
 app.use('/cpanel/doctor', doctorCpanelRouter);
 app.use('/cpanel/admin', adminCpanelRouter);
+app.use('/cpanel/lichkham', lichkhamCpanelRouter);
 
 
 mongoose.connect('mongodb://127.0.0.1:27017/Healthcare?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false', {

@@ -45,5 +45,16 @@ const searchedDoctorByName = async (name) => {
     return null;
 }
 
+const login = async (name,password) => {
+    return await DoctorService.login(name,password);
+}
 
-module.exports = { getAllDoctors, deleteDoctorById, addNewDoctor, getDoctorById, updateDoctorById, searchedDoctorByName };
+const getdoctors = async () => {
+    try {
+        return await DoctorService.getdoctors();
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+module.exports = { login, getAllDoctors, deleteDoctorById, addNewDoctor, getDoctorById, updateDoctorById, searchedDoctorByName, getdoctors };

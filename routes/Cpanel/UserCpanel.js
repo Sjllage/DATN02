@@ -8,4 +8,6 @@ router.get("/", async (req, res, next) => {
     const users = await userController.getAllusers();
     res.render('users/listuser', { users });
 });
+
+
 module.exports = router;

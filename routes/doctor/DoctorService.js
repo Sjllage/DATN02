@@ -49,7 +49,6 @@ const addNewDoctor = async (name, email, sdt, password, mota, image, vaitro) => 
     }
     const p = new DoctorModel(newDoctor);
     await p.save();
-
   } catch (error) {
     console.log('Add new Doctor error: ', error);
     return false;
@@ -102,5 +101,28 @@ const searchedDoctorByName = async (name) => {
   return null;
 }
 
-module.exports = { getAllDoctors, deleteDoctorById, addNewDoctor, getDoctorById, updateDoctorById , searchedDoctorByName, getAllDoctors_v2 };
+const login = async (name, password) => {
+  try {
+      const doctor = await DoctorModel.findOne({name: name});
+      if(doctor){
+          const result = await DoctorModel.find({password: password});
+          if(result) {
+              return result ? doctor : false;
+          }
+      }
+  } catch (error) {
+      console.log('Login error: ', error);
+  }
+  return false;
+}
+
+const getdoctors = async () => {
+  try {
+      return DoctorModel.find();
+  } catch (error) {
+      console.log(error);
+  }
+}
+
+module.exports = { login, getAllDoctors, deleteDoctorById, addNewDoctor, getDoctorById, updateDoctorById , searchedDoctorByName, getAllDoctors_v2, getdoctors };
 

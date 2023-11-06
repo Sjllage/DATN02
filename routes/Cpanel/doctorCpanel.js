@@ -11,6 +11,11 @@ router.get("/", async (req, res, next) => {
     res.render('doctor/listdoctor', { doctors });
 });
 
+/** 
+router.get("/lichkham", async (req, res, next) => {
+    res.render('lichkham/listlichkham');
+});
+*/
 router.get("/:id/delete", async (req, res, next) => {
     try {
         const { id } = req.params;

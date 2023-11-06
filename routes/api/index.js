@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 const userController = require('../Users/UserController')
 const adminController = require('../admin/adminController')
+const doctorController = require('../doctor/DoctorControllers.js')
 const jwt = require('jsonwebtoken');
 //const {checkTokenCpanel} = require('../../middle/Authen');
 const {validationRegister} = require('../../middle/Validation.js');
@@ -18,6 +19,11 @@ router.get('/admin',function(req, res, next){
   res.render('indexadmin');
 });
 
+router.get('/doctor',function(req, res, next){
+  //hiển thị trang chủ doctor
+  res.render('indexdoctor');
+});
+
 router.get('/login',function(req, res, next){
   //hiển thị trang đăng nhập
   res.render('users/login');
@@ -32,6 +38,12 @@ router.get('/admin/login',function(req, res, next){
   //hiển thị trang đăng nhập
   res.render('admin/login');
 });
+
+router.get('/doctor/login',function(req, res, next){
+  //hiển thị trang đăng nhập
+  res.render('doctor/login');
+});
+
 // http://localhost:3000/admin/login
 router.post('/admin/login', async function(req, res, next){
   const {name, password} = req.body;
@@ -42,6 +54,18 @@ router.post('/admin/login', async function(req, res, next){
     return res.redirect('/admin/login');
   }
 });
+
+// http://localhost:3000/admin/login
+router.post('/doctor/login', async function(req, res, next){
+  const {name, password} = req.body;
+  const result = await doctorController.login(name, password);
+  if(result){
+    return res.redirect('/doctor');
+  }else{
+    return res.redirect('/doctor/login');
+  }
+});
+
 // http://localhost:3000/login
 router.post('/login', async function(req, res, next){
   //xử lý đăng nhập  
