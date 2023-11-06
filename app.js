@@ -12,6 +12,9 @@ require('./routes/thuoc/thuocModel');
 require('./routes/doctor/DoctorModel');
 require('./routes/admin/adminModel');
 require('./routes/lichkham/lichkhamModel.js');
+require('./routes/thuoc/themDonThuoc.js');
+require('./routes/Users/CuocHenForUser.js');
+require('./routes/Users/BenhAn.js');
 
 var indexRouter = require('./routes/api/index');
 const usersRouter = require('./routes/api/APiuser');
@@ -20,6 +23,9 @@ const APIDoctorRouter = require('./routes/api/APIDoctor');
 const APIvaitroRouter = require('./routes/api/APIvaitro');
 const APIadminRouter = require('./routes/api/APIadmin');
 const APIlichkhamRouter = require('./routes/api/APIlichkham.js');
+const APiDonThuocRouter = require('./routes/api/APiDonThuoc.js');
+const APiCuocHenRouter = require('./routes/api/APICuocHen.js');
+const APIBenhAnRouter = require('./routes/api/APIBenhAn.js');
 
 const usersCpanelRouter = require('./routes/Cpanel/UserCpanel');
 const thuocCpanelRouter = require('./routes/Cpanel/thuocCpanel');
@@ -60,6 +66,9 @@ app.use('/api/APIDoctor',APIDoctorRouter);
 app.use('/api/APIvaitro',APIvaitroRouter);
 app.use('/api/APIadmin',APIadminRouter);
 app.use('/api/APIlichkham', APIlichkhamRouter);
+app.use('./api/APIDonThuoc',APiDonThuocRouter);
+app.use('./api/APICuocHen',APiCuocHenRouter);
+app.use('/api/benhan',APIBenhAnRouter);
 
 app.use('/cpanel/user', usersCpanelRouter);
 app.use('/cpanel/thuoc', thuocCpanelRouter);
