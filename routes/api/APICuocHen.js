@@ -1,6 +1,26 @@
 var modelCuocHen = require("../Users/CuocHenForUser");
 var express = require("express");
 var router = express.Router();
+var cuochen= require("../compoment/cuochenService");
+const vaitroController = require('../vaitro/VaitroControllers');
+
+router.get("/list", async (req, res, next) => {
+  const cuochens = await cuochen.getAllcuochen();
+  res.render('cuochen/list', { cuochens });
+});
+
+router.get('/add', async (req, res, next) => {
+  try {
+    const vaitros = await vaitroController.getVaitros();
+      const cuochens = await cuochen.getcuochenById();
+      return res.render('cuochen/new', { cuochens, vaitros });
+  } catch (error) {
+      next(error);
+  }
+});
+
+
+
 
 //http://localhost:3000dd
 router.post("/addAppointment", async function (req, res, next) {
@@ -16,9 +36,10 @@ router.post("/addAppointment", async function (req, res, next) {
 
       };
       await modelCuocHen.create(newProduct);
-      res.json({ status: 1, message: "Đặt cuộc hẹn thành công" });
+      return res.redirect('/cuochen/list');
     } catch (err) {
-      res.json({ status: 0, message: "Thêm thất bại" });
+      return res.redirect('/cuochen/new');
+      next(err);
     }
   });
   

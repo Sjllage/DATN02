@@ -35,17 +35,14 @@ const deletelichkhamById = async (id) => {
 }
 
 // Thêm mới sản phẩm vào database
-const addNewlichkham = async ( ngay, tgkham, doctor) => {
+const addNewlichkham = async (ngay, tgkham, doctor) => {
   try {
-    const lich = await lichkhamModel.find({ngay: ngay});
-    if(lich) return false;
     const newlichkham = {
-      ngay,
-      tgkham,
-      doctor
+      ngay: ngay,
+      tgkham: tgkham,
+      doctor: doctor
     }
-    const p = new lichkhamModel(newlichkham);
-    await p.save();
+    await lichkhamModel.create(newlichkham);
     return true;
   } catch (error) {
     console.log('Add new lichkham error: ', error);

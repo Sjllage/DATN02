@@ -9,7 +9,7 @@ const DonThuoc = new Schema({
     chi_tiet: { type: String },
     ten_thuoc: { type: String },
     tong_tien: { type: String },
-    id_thuoc: { type: ObjectId },
+    id_thuoc: { type: ObjectId, ref: `thuoc` },
 
 });
 module.exports = mongoose.models.DonThuoc || mongoose.model('DonThuoc' ,DonThuoc);

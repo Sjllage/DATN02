@@ -4,9 +4,9 @@ const ObjectId = Schema.ObjectId;
 
 const lichkhamSchema = new Schema({
     id: { type: ObjectId },
-    ngay: { type: String },
-    tgkham: {type: String},
-    doctor: {type: ObjectId, ref: 'doctor'},// khóa ngoại
+    ngay: { type: String, default: "" },
+    tgkham: {type: String, default: ""},
+    doctor: {type: ObjectId, ref: 'doctor', default: ""},// khóa ngoại
 });
 
 module.exports = mongoose.models.lichkham || mongoose.model('lichkham', lichkhamSchema);

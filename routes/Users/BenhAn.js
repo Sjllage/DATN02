@@ -12,6 +12,6 @@ const BenhAn = new Schema({
     benh_an: { type: String },
     thuoc_da_ke_don: { type: String },
     trang_thai: { type: String },
-    ngay_tao_benh_an: { type: String },
+    ngay_tao_benh_an: { type: String, default: '', default: Date.now() },
 });
 module.exports = mongoose.models.BenhAn || mongoose.model('BenhAn' ,BenhAn);

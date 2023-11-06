@@ -4,7 +4,7 @@ const ObjectId = Schema.ObjectId;
 
 const CuocHenForUser = new Schema({
     id: { type: ObjectId },
-    idKhoa: { type: String },
+    idKhoa: { type: ObjectId, ref: `vaitro` },
     ngay: { type: String },
     TimeStart: { type: String },
     TimeEnd: { type: String },

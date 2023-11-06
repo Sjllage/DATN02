@@ -59,6 +59,9 @@ app.use('/thuoc', thuocRouter);
 app.use('/admin', APIadminRouter);
 app.use('/doctor', APIDoctorRouter);
 app.use('/lichkham', APIlichkhamRouter);
+app.use('/benhan', APIBenhAnRouter);
+app.use('/donthuoc', APiDonThuocRouter);
+app.use('/cuochen', APiCuocHenRouter);
 
 app.use('/api/user', usersRouter);
 app.use('/api/thuoc', thuocRouter);

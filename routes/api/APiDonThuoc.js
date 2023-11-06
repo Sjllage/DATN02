@@ -2,11 +2,30 @@
 var DonThuocProduct = require("../thuoc/themDonThuoc");
 var express = require("express");
 var router = express.Router();
+const donthuoc = require('../compoment/donthuocService');
+const thuoc = require('../thuoc/thuocControllers');
+
 
 router.get("/", async function (req, res, next) {
   var data = await DonThuocProduct.find();
   res.json(data);
 });
+
+router.get("/list", async (req, res, next) => {
+  const donthuocs = await donthuoc.getAlldonthuocs();
+  res.render('donthuoc/list', { donthuocs });
+});
+
+router.get('/add', async (req, res, next) => {
+  try {
+    const thuocs = await thuoc.getthuocById();
+      return res.render('donthuoc/new', { thuocs });
+  } catch (error) {
+      next(error);
+  }
+});
+
+
 //http:localhost:3000/donthuoc/add
 router.post("/add", async function (req, res, next) {
     try {
@@ -22,9 +41,11 @@ router.post("/add", async function (req, res, next) {
         id_thuoc
       };
       await DonThuocProduct.create(newProduct);
-      res.json({ status: 1, message: "Thêm  thành công" });
+      return res.redirect('/donthuoc/list');
     } catch (err) {
-      res.json({ status: 0, message: "Thêm thất bại" });
+      return res.redirect('/donthuoc/new');
     }
   });
+
+
   module.exports = router;
