@@ -32,7 +32,7 @@
                                         </div>
                                         <div class="card-body">
                                             <form method="post" action="/benhan/add"
-                                                enctype="multipart/form-data">
+                                            >
                                                 <div class="mb-3">
                                                     <label class="form-label" for="basic-icon-default-fullname">
                                                         Tên bệnh nhân</label>
@@ -48,15 +48,10 @@
                                                 <div class="mb-3">
                                                     <label class="form-label"
                                                         for="basic-icon-default-company">Giới tính</label>
-                                                    <div class="input-group input-group-merge">
-                                                        <span id="basic-icon-default-company2"
-                                                            class="input-group-text"><i
-                                                                class="bx bx-buildings"></i></span>
-                                                        <input type="text" id="basic-icon-default-company"
-                                                            class="form-control" name="email" placeholder="gioi_tinh"
-                                                            aria-label="ACME Inc."
-                                                            aria-describedby="basic-icon-default-company2" />
-                                                    </div>
+                                                    <select name="gioi_tinh" class="form-control" id="basic-icon-default-fullname2">
+                                                        <option>Nam</option>
+                                                        <option>Nữ</option>
+                                                    </select>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label"
@@ -123,18 +118,12 @@
                                                             aria-describedby="basic-icon-default-company2" />
                                                     </div>
                                                 </div>
-                                                <div class="mb-3">
-                                                    <label class="form-label"
-                                                        for="basic-icon-default-company">Trạng thái hiện tại</label>
-                                                    <div class="input-group input-group-merge">
-                                                        <span id="basic-icon-default-company2"
-                                                            class="input-group-text"><i
-                                                                class="bx bx-buildings"></i></span>
-                                                        <input type="text" id="basic-icon-default-company"
-                                                            class="form-control" name="trang_thai" placeholder="Trạng thái hiện tại"
-                                                            aria-label="ACME Inc."
-                                                            aria-describedby="basic-icon-default-company2" />
-                                                    </div>
+                                                <div>
+                                                    <label>Tên bác sĩ</label>
+                                                    <select name="trang_thai" class="form-control" id="basic-icon-default-fullname2">
+                                                        <option>Đang điều trị</option>
+                                                        <option>Điều trị hoàn tất</option>
+                                                    </select>
                                                 </div>
                                                 </p>
                                                 <button type="submit" class="btn btn-primary">Submit</button>

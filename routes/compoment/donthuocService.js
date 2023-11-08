@@ -14,7 +14,7 @@ const getAlldonthuocs_v2 = async (page, size) => {
   let limit = size;
   try {
     return await donthuocModel
-    .find({}, 'ten_don_thuoc so_luong_thuoc chi_tiet ten_thuoc tong_tien id_thuoc')// chi lay 2 truong name va price
+    .find({}, 'ten_don_thuoc so_luong_thuoc chi_tiet ten_thuoc tong_tien')// chi lay 2 truong name va price
     .populate('id_thuoc', 'name')// lấy thông tin category
     .sort({ name : 1})// sắp xếp theo tê tăng dần
     .skip(0) // bỏ qua bao nhiêu sản phẩm
@@ -35,6 +35,19 @@ const deletedonthuocById = async (id) => {
   }
 }
 
+// Thêm mới sản phẩm vào database
+const addNewdonthuoc = async (ten_don_thuoc, so_luong_thuoc, chi_tiet, ten_thuoc, tong_tien) => {
+  try {
+    const newdonthuoc = {
+      ten_don_thuoc, so_luong_thuoc, chi_tiet, ten_thuoc, tong_tien
+    }
+    const p = new lichkhamModel(newdonthuoc);
+    await p.save();
+  } catch (error) {
+    console.log('Add new lichkham error: ', error);
+    return false;
+  }
+}
 
 //Lấy thông tin một sản phẩm theo id
 const getdonthuocById = async (id) => {
@@ -47,7 +60,7 @@ const getdonthuocById = async (id) => {
 }
 
 //cập nhật sản phẩm theo Id
-const updatedonthuocById = async (id, ten_don_thuoc, so_luong_thuoc, chi_tiet, ten_thuoc, tong_tien, id_thuoc) => {
+const updatedonthuocById = async (id, ten_don_thuoc, so_luong_thuoc, chi_tiet, ten_thuoc, tong_tien) => {
   try {
     const donthuoc = await donthuocModel.findById(id);
     if (donthuoc) {
@@ -56,7 +69,6 @@ const updatedonthuocById = async (id, ten_don_thuoc, so_luong_thuoc, chi_tiet, t
       donthuoc.chi_tiet = chi_tiet ? chi_tiet : donthuoc.chi_tiet;
       donthuoc.ten_thuoc = ten_thuoc ? ten_thuoc : donthuoc.ten_thuoc;
       donthuoc.tong_tien = tong_tien ? tong_tien : donthuoc.tong_tien;
-      donthuoc.id_thuoc = id_thuoc ? id_thuoc : donthuoc.id_thuoc;
       await donthuoc.save();
       return true;
     }
@@ -80,4 +92,4 @@ const searcheddonthuocByName = async (ten_don_thuoc) => {
   return null;
 }
 
-module.exports = { getAlldonthuocs, getAlldonthuocs_v2, deletedonthuocById, getdonthuocById, updatedonthuocById , searcheddonthuocByName };
+module.exports = {addNewdonthuoc, getAlldonthuocs, getAlldonthuocs_v2, deletedonthuocById, getdonthuocById, updatedonthuocById , searcheddonthuocByName };

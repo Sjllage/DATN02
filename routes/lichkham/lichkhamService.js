@@ -38,12 +38,12 @@ const deletelichkhamById = async (id) => {
 const addNewlichkham = async (ngay, tgkham, doctor) => {
   try {
     const newlichkham = {
-      ngay: ngay,
-      tgkham: tgkham,
-      doctor: doctor
+      ngay,
+      tgkham,
+      doctor
     }
-    await lichkhamModel.create(newlichkham);
-    return true;
+    const p = new lichkhamModel(newlichkham);
+    await p.save();
   } catch (error) {
     console.log('Add new lichkham error: ', error);
     return false;
@@ -61,16 +61,14 @@ const getlichkhamById = async (id) => {
 }
 
 //cập nhật sản phẩm theo Id
-const updatelichkhamById = async (id, name, price, quantity, image) => {
+const updatelichkhamById = async (id, ngay, tgkham, doctor) => {
   try {
-    const lichkham = await lichkhamModel.findById(id);
-    if (lichkham) {
-      lichkham.name = name ? name : lichkham.name;
-      lichkham.price = price ? price : lichkham.price;
-      lichkham.quantity = quantity ? quantity : lichkham.quantity;
-      lichkham.image = image ? image : lichkham.image;
-      // lichkham.category = category ? category : lichkham.category;
-      await lichkham.save();
+    const lichkhams = await lichkhamModel.findById(id);
+    if (lichkhams) {
+      lichkhams.ngay = ngay ? ngay : lichkhams.ngay;
+      lichkhams.tgkham = tgkham ? tgkham : lichkhams.tgkham;
+      lichkhams.doctor = doctor ? doctor : lichkhams.doctor;
+      await lichkhams.save();
       return true;
     }
     return false;
@@ -81,11 +79,11 @@ const updatelichkhamById = async (id, name, price, quantity, image) => {
 }
 
 // Tìm kiếm sản phẩm theo tên
-const searchedlichkhamByName = async (name) => {
+const searchedlichkhamByName = async (tgkham) => {
   try{
     return await lichkhamModel.find({
       // tên có chứa ... không phân biệt hoa thường
-      name: {$regex: name, $options: 'i'},
+      name: {$regex: tgkham, $options: 'i'},
   });
   }catch(error) {
     console.log('Search lichkham by name error: ', error);

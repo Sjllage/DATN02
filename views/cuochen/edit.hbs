@@ -31,69 +31,56 @@
                                             <small class="text-muted float-end">Merged input group</small>
                                         </div>
                                         <div class="card-body">
-                                            <form method="post" action="/donthuoc/add"
-                                            >
+                                            <form method="post" action="/cpanel/cuochen/{{cuochens._id}}/edit"
+                                            >   
+                                                <div>
+                                                    <label>Tên bác sĩ</label>
+                                                    <select name="idKhoa" class="form-control" >
+                                                        {{#each vaitro}}
+                                                        {{#if this.selected}}
+                                                        <option select value="{{this._id}}">{{this.name}}</option>
+                                                        {{else}}
+                                                        <option value="{{this._id}}">{{this.name}}</option>
+                                                        {{/if}}
+                                                        {{/each}}
+                                                    </select>
+                                                </div>  
                                                 <div class="mb-3">
                                                     <label class="form-label" for="basic-icon-default-fullname">
-                                                        Tên đơn thuốc</label>
+                                                        Ngày</label>
                                                     <div class="input-group input-group-merge">
                                                         <span id="basic-icon-default-fullname2"
                                                             class="input-group-text"><i class="bx bx-user"></i></span>
-                                                        <input type="text" class="form-control" name="ten_don_thuoc"
-                                                            id="basic-icon-default-fullname" placeholder="Tên đơn thuốc"
+                                                        <input type="date" class="form-control" name="ngay"
+                                                            id="basic-icon-default-fullname" value="{{cuochens.ngay}}"
                                                             aria-label="John Doe"
-                                                            aria-describedby="basic-icon-default-fullname2" />
+                                                            aria-describedby="basic-icon-default-fullname2"
+                                                        >
                                                     </div>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label"
-                                                        for="basic-icon-default-company">Số lượng thuốc</label>
+                                                        for="basic-icon-default-company">Thời gian khám</label>
                                                     <div class="input-group input-group-merge">
                                                         <span id="basic-icon-default-company2"
                                                             class="input-group-text"><i
                                                                 class="bx bx-buildings"></i></span>
-                                                        <input type="number" id="basic-icon-default-company"
-                                                            class="form-control" name="so_luong_thuoc" placeholder="Số lượng thuốc"
-                                                            aria-label="ACME Inc."
+                                                        <input type="datetime" id="basic-icon-default-company"
+                                                            class="form-control" name="TimeStart"
+                                                            aria-label="ACME Inc."  value="{{cuochens.TimeStart}}"
                                                             aria-describedby="basic-icon-default-company2" />
                                                     </div>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label"
-                                                        for="basic-icon-default-company">Chi tiết</label>
+                                                        for="basic-icon-default-company">Thời gian kết thúc khám</label>
                                                     <div class="input-group input-group-merge">
                                                         <span id="basic-icon-default-company2"
                                                             class="input-group-text"><i
                                                                 class="bx bx-buildings"></i></span>
-                                                        <input type="text" id="basic-icon-default-company"
-                                                            class="form-control" name="chi_tiet" placeholder="Chi tiết"
-                                                            aria-label="ACME Inc."
-                                                            aria-describedby="basic-icon-default-company2" />
-                                                    </div>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label class="form-label"
-                                                        for="basic-icon-default-company">Tên thuốc</label>
-                                                    <div class="input-group input-group-merge">
-                                                        <span id="basic-icon-default-company2"
-                                                            class="input-group-text"><i
-                                                                class="bx bx-buildings"></i></span>
-                                                        <input type="text" id="basic-icon-default-company"
-                                                            class="form-control" name="ten_thuoc" placeholder="Tên thuốc"
-                                                            aria-label="ACME Inc."
-                                                            aria-describedby="basic-icon-default-company2" />
-                                                    </div>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label class="form-label"
-                                                        for="basic-icon-default-company">Tổng tiền</label>
-                                                    <div class="input-group input-group-merge">
-                                                        <span id="basic-icon-default-company2"
-                                                            class="input-group-text"><i
-                                                                class="bx bx-buildings"></i></span>
-                                                        <input type="number" id="basic-icon-default-company"
-                                                            class="form-control" name="tong_tien" placeholder="Tổng tiền"
-                                                            aria-label="ACME Inc."
+                                                        <input type="datetime" id="basic-icon-default-company"
+                                                            class="form-control" name="TimeEnd"
+                                                            aria-label="ACME Inc."  value="{{cuochens.TimeEnd}}"
                                                             aria-describedby="basic-icon-default-company2" />
                                                     </div>
                                                 </div>
@@ -146,3 +133,15 @@
             <!-- Overlay -->
             <div class="layout-overlay layout-menu-toggle"></div>
         </div>
+
+        <script>
+            const displayImg = (input) => {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $('#img').attr('src', e.target.result);
+                    }
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+        </script>

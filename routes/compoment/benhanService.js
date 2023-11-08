@@ -24,6 +24,21 @@ const getAllbenhan = async (page, size) => {
   }
 }
 
+// Thêm mới sản phẩm vào database
+const addNewbenhan = async (ten_benh_nhan,gioi_tinh,phongKham,ngay_nhap_vien,ngay_xuat_vien,benh_an,thuoc_da_ke_don,trang_thai,ngay_tao_benh_an) => {
+  try {
+    const newdonthuoc = {
+      ten_benh_nhan, gioi_tinh, phongKham, ngay_nhap_vien, ngay_xuat_vien, benh_an, thuoc_da_ke_don, trang_thai, 
+      ngay_tao_benh_an
+    }
+    const p = new benhanModel(newdonthuoc);
+    await p.save();
+  } catch (error) {
+    console.log('Add new lichkham error: ', error);
+    return false;
+  }
+}
+
 const deletebenhanById = async (id) => {
   try {
     await benhanModel.findByIdAndDelete(id);
@@ -81,4 +96,4 @@ const searchedbenhanByName = async (ten) => {
   return null;
 }
 
-module.exports = { getAllbenhans, deletebenhanById, getbenhanById, updatebenhanById , searchedbenhanByName, getAllbenhan };
+module.exports = {addNewbenhan, getAllbenhans, deletebenhanById, getbenhanById, updatebenhanById , searchedbenhanByName, getAllbenhan };

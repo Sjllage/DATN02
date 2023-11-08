@@ -31,8 +31,8 @@
                                             <small class="text-muted float-end">Merged input group</small>
                                         </div>
                                         <div class="card-body">
-                                            <form method="post" action="/cpanel/lichkham/{{lichkham._id}}/edit"
-                                                enctype="multipart/form-data">
+                                            <form method="post" action="/cpanel/lichkham/{{lichkhams._id}}/edit"
+                                            >
                                                 <div class="mb-3">
                                                     <label class="form-label" for="basic-icon-default-fullname">
                                                         Ngày</label>
@@ -40,10 +40,10 @@
                                                         <span id="basic-icon-default-fullname2"
                                                             class="input-group-text"><i class="bx bx-user"></i></span>
                                                         <input type="date" class="form-control" name="ngay"
-                                                            id="basic-icon-default-fullname"
+                                                            id="basic-icon-default-fullname" value="{{lichkhams.ngay}}"
                                                             aria-label="John Doe"
                                                             aria-describedby="basic-icon-default-fullname2"
-                                                            value="{{lichkham.ngay}}" />
+                                                        >
                                                     </div>
                                                 </div>
                                                 <div class="mb-3">
@@ -54,16 +54,15 @@
                                                             class="input-group-text"><i
                                                                 class="bx bx-buildings"></i></span>
                                                         <input type="datetime" id="basic-icon-default-company"
-                                                            class="form-control" name="price"
-                                                            aria-label="ACME Inc."
-                                                            aria-describedby="basic-icon-default-company2"
-                                                            value="{{lichkham.tg_kham}}" />
+                                                            class="form-control" name="tgkham"
+                                                            aria-label="ACME Inc."  value="{{lichkhams.tgkham}}"
+                                                            aria-describedby="basic-icon-default-company2" />
                                                     </div>
                                                 </div>
                                                 <div>
                                                     <label>Tên bác sĩ</label>
                                                     <select name="doctor" class="form-control">
-                                                        {{#each doctors}}
+                                                        {{#each doctor}}
                                                         {{#if this.selected}}
                                                         <option select value="{{this._id}}">{{this.name}}</option>
                                                         {{else}}
@@ -72,6 +71,7 @@
                                                         {{/each}}
                                                     </select>
                                                 </div>
+                                                </p>
                                                 <button type="submit" class="btn btn-primary">Submit</button>
                                             </form>
                                         </div>

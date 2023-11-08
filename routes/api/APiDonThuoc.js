@@ -29,7 +29,7 @@ router.get('/add', async (req, res, next) => {
 //http:localhost:3000/donthuoc/add
 router.post("/add", async function (req, res, next) {
     try {
-      const { id,ten_don_thuoc,so_luong_thuoc,chi_tiet,ten_thuoc,tong_tien,id_thuoc } = req.body;
+      const { id,ten_don_thuoc,so_luong_thuoc,chi_tiet,ten_thuoc,tong_tien } = req.body;
   
       const newProduct = {
         id,
@@ -37,8 +37,7 @@ router.post("/add", async function (req, res, next) {
         so_luong_thuoc,
         chi_tiet,
         ten_thuoc,
-        tong_tien,
-        id_thuoc
+        tong_tien
       };
       await DonThuocProduct.create(newProduct);
       return res.redirect('/donthuoc/list');

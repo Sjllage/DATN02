@@ -174,20 +174,20 @@
           </ul>
         </li>
         <!-- Tables -->
-        <li class="menu-item">
+            <li class="menu-item">
               <a href="/cpanel/lichkham/" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-table"></i>
                 <div data-i18n="Tables">Đặt lịch khám</div>
               </a>
             </li>
             <li class="menu-item">
-              <a href="/benhan/list" class="menu-link">
+              <a href="/cpanel/benhan/" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-table"></i>
                 <div data-i18n="Tables">Bệnh án</div>
               </a>
             </li>
             <li class="menu-item">
-              <a href="/cuochen/list" class="menu-link">
+              <a href="/cpanel/cuochen/" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-table"></i>
                 <div data-i18n="Tables">Đặt cuộc hẹn</div>
               </a>
@@ -302,7 +302,7 @@
           <!-- Basic Bootstrap Table -->
           <div class="card">
             <h5 class="card-header">Table Basic</h5>
-            <a href="/cuochen/add" class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i>
+            <a href="/cpanel/cuochen/add" class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i>
                             New</a>
             <div class="table-responsive text-nowrap">
               <table class="table">
@@ -332,7 +332,7 @@
                           <i class="bx bx-dots-vertical-rounded"></i>
                         </button>
                         <div class="dropdown-menu">
-                          <a href="/cpanel/doctor/{{this._id}}/edit" class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i>
+                          <a href="/cpanel/cuochen/{{this._id}}/edit" class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i>
                             Edit</a>
                           <a  class="dropdown-item" href="javascript:void(0);"
                             onclick="confirmDelete('{{this._id}}');"><i class="bx bx-trash me-1"></i>
@@ -368,7 +368,7 @@
     }
 
     const deletethuoc = async (id) => {
-      const url = `/cpanel/doctor/${id}/delete`;
+      const url = `/cpanel/cuochen/${id}/delete`;
       const option = {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }

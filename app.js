@@ -32,6 +32,9 @@ const thuocCpanelRouter = require('./routes/Cpanel/thuocCpanel');
 const doctorCpanelRouter = require('./routes/Cpanel/doctorCpanel');
 const adminCpanelRouter = require('./routes/Cpanel/adminCpanel.js');
 const lichkhamCpanelRouter = require('./routes/Cpanel/lichkhamCpanel.js');
+const benhanCpanelRouter = require('./routes/Cpanel/benhanCpanel.js');
+const cuochenCpanelRouter = require('./routes/Cpanel/cuochenCpanel.js');
+const donthuocCpanelRouter = require('./routes/Cpanel/donthuocCpanel.js');
 
 var app = express();
 
@@ -78,6 +81,9 @@ app.use('/cpanel/thuoc', thuocCpanelRouter);
 app.use('/cpanel/doctor', doctorCpanelRouter);
 app.use('/cpanel/admin', adminCpanelRouter);
 app.use('/cpanel/lichkham', lichkhamCpanelRouter);
+app.use('/cpanel/benhan', benhanCpanelRouter);
+app.use('/cpanel/donthuoc', donthuocCpanelRouter);
+app.use('/cpanel/cuochen', cuochenCpanelRouter);
 
 
 mongoose.connect('mongodb://127.0.0.1:27017/Healthcare?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false', {

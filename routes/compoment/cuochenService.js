@@ -25,6 +25,21 @@ const getAllcuochen = async (page, size) => {
   }
 }
 
+
+// Thêm mới sản phẩm vào database
+const addNewcuochen = async (idKhoa, ngay, TimeStart, TimeEnd) => {
+  try {
+    const newdonthuoc = {
+      idKhoa, ngay, TimeStart, TimeEnd
+    }
+    const p = new lichkhamModel(newdonthuoc);
+    await p.save();
+  } catch (error) {
+    console.log('Add new lichkham error: ', error);
+    return false;
+  }
+}
+
 const deletecuochenById = async (id) => {
   try {
     await cuochenModel.findByIdAndDelete(id);
@@ -66,4 +81,4 @@ const updatecuochenById = async (id, idKhoa, ngay, TimeStart, TimeEnd) => {
 }
 
 
-module.exports = {getAllcuochens, deletecuochenById, getcuochenById, updatecuochenById , getAllcuochen };
+module.exports = {addNewcuochen, getAllcuochens, deletecuochenById, getcuochenById, updatecuochenById , getAllcuochen };

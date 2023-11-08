@@ -20,8 +20,6 @@ router.get('/add', async (req, res, next) => {
 });
 
 
-
-
 //http://localhost:3000dd
 router.post("/addAppointment", async function (req, res, next) {
     try {

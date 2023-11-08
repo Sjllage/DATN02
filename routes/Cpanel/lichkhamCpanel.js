@@ -9,6 +9,11 @@ router.get("/", async (req, res, next) => {
     res.render('lichkham/listlichkham', { lichkhams });
 });
 
+router.get("/doctor", async (req, res, next) => {
+    const lichkhams = await lichkhamController.getAlllichkhams();
+    res.render('lichkham/listdoctor', { lichkhams });
+});
+
 router.get("/:id/delete", async (req, res, next) => {
     try {
         const { id } = req.params;
@@ -32,11 +37,14 @@ router.get('/new', async (req, res, next) => {
 
 // http://localhost:3000/cpanel/lichkham/new
 //Xử lý thêm mới sản phẩm
-router.post('/new-lich', async (req, res, next) => {
+router.post('/new-lich',
+async (req, res, next) => {
     try {
-        const {ngay, tgkham, doctor} = req.body;
-        const lichkhams = await lichkhamController.addNewlichkham(ngay, tgkham, doctor);
-        if (lichkhams) {
+        // cmd => ipconfig => ipv4
+        let { body } = req;
+        const { ngay, tgkham, doctor} = body;
+        const result = await lichkhamController.addNewlichkham(ngay, tgkham, doctor);
+        if (result) {
             return res.redirect('/cpanel/lichkham/new');
         } else {
             return res.redirect('/cpanel/lichkham/');
@@ -44,7 +52,6 @@ router.post('/new-lich', async (req, res, next) => {
     } catch (error) {
         next(error);
     }
-    
 });
 
 //hiển thị trang thông tin chi tiết sản phẩm
@@ -53,14 +60,14 @@ router.get('/:id/edit', async (req, res, next) => {
     try {
         const { id } = req.params;
         const lichkhams = await lichkhamController.getlichkhamById(id);
-        let doctors = await doctorController.getdoctors();
-        doctors = doctors.map(item => {
+        let doctor = await doctorController.getdoctors();
+        doctor = doctor.map(item => {
             item.selected = false;
-            if (item._id.toString() == lichkhams.doctors.toString()) {
+            if (item._id.toString() == lichkhams.doctor.toString()) {
                 item.selected = true;
             }return item;
         });
-        return res.render('lichkham/editlichkham', {lichkhams , doctors});
+        return res.render('lichkham/editlichkham', {lichkhams , doctor});
     } catch (error) {
         next(error);
     }
@@ -69,17 +76,14 @@ router.get('/:id/edit', async (req, res, next) => {
 
 router.post('/:id/edit', async (req, res, next) => {
     try {
-        // cmd => ipconfig => ipv4
-        // 192.168.1.105 ở nhà
-        // 172.16.86.230 ở trường
         let { body } = req;
         let { id } = req.params;
-        const { ngay, tg_kham, name } = body;
-        const result = await lichkhamController.updatelichkhamById(id, ngay, tg_kham, name );
+        const { ngay, tgkham, doctor } = body;
+        const result = await lichkhamController.updatelichkhamById(id, ngay, tgkham, doctor );
         if (result) {
-            return res.redirect('/cpanel/lichkham/');
+            return res.redirect(`/cpanel/lichkham/`);
         } else {
-            return res.redirect(`/cpanel/lichkham/lich-kham/${id}/edit`);
+            return res.redirect(`/cpanel/lichkham/${id}/edit`);
         }
     } catch (error) {
         next(error);

@@ -181,13 +181,13 @@
               </a>
             </li>
             <li class="menu-item">
-              <a href="/benhan/list" class="menu-link">
+              <a href="/cpanel/benhan/" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-table"></i>
                 <div data-i18n="Tables">Bệnh án</div>
               </a>
             </li>
             <li class="menu-item">
-              <a href="/cuochen/list" class="menu-link">
+              <a href="/cpanel/cuochen/" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-table"></i>
                 <div data-i18n="Tables">Đặt cuộc hẹn</div>
               </a>
@@ -302,7 +302,7 @@
           <!-- Basic Bootstrap Table -->
           <div class="card">
             <h5 class="card-header">Table Basic</h5>
-            <a href="/benhan/add" class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i>
+            <a href="/cpanel/benhan/add" class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i>
                             New</a>
             <div class="table-responsive text-nowrap">
               <table class="table">
@@ -311,8 +311,10 @@
                     <th>Tên Bệnh nhân</th>
                     <th>Giới tính</th>
                     <th>Phòng Khám</th>
+                    <th>Ngày tạo bệnh án</th>
                     <th>Ngày nhập viện</th>
                     <th>Ngày xuất viện</th>
+                    <th>Bệnh án</th>
                     <th>Thuốc đã kê đơn</th>
                     <th>Trạng thái</th>
                   </tr>
@@ -326,13 +328,13 @@
                       {{this.phongKham}}
                     </td>
                     <td>
-                      {{this.ngay_nhap_vien}}
+                      {{this.ngay_tao_benh_an}}
                     </td>
                     <td>
                       {{this.ngay_nhap_vien}}
                     </td>
                     <td>
-                      {{this.ngay_nhap_vien}}
+                      {{this.ngay_xuat_vien}}
                     </td>
                     <td>
                       {{this.benh_an}}
@@ -371,7 +373,7 @@
     }
 
     const deletethuoc = async (id) => {
-      const url = `/cpanel/doctor/${id}/delete`;
+      const url = `/cpanel/benhan/${id}/delete`;
       const option = {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
