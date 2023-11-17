@@ -8,17 +8,39 @@ import {
   View,
   ScrollView,
 } from 'react-native';
-import React from 'react';
+import React , {useState} from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import {LinearTextGradient} from 'react-native-text-gradient';
-const Login = props => {
+import AxiosIntance from '../ultil/AxiosIntance';
+const Login = (props) => {
   const {navigation} = props;
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   //chuyen trang register
   const dangKy = () => {
     navigation.navigate('Register');
   };
   const dangNhap = () => {
     navigation.navigate('Forgot_Password');
+  };
+
+  const dangNhapNe = async () => {
+    console.log(email, password);
+    try {
+      const response = await AxiosIntance().post("user/login", {
+        email: email,
+        password: password,
+      });
+      console.log(response);
+      if (response.error == false) {
+        ToastAndroid.show("Dang nhap thanh cong", ToastAndroid.SHORT);
+        navigation.navigate('Home');
+      } else {
+        ToastAndroid.show("Dang nhap that bai", ToastAndroid.SHORT);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -71,7 +93,7 @@ const Login = props => {
           <View style={styles.sectionStyle}>
             <Image style={styles.img} source={require('../img/user.png')} />
             <Text style={styles.text}>|</Text>
-            <TextInput
+            <TextInput onChangeText={setEmail}
               style={{flex: 1, fontSize: 16}}
               placeholder="Tên đăng nhập"
               underlineColorAndroid={'rgba(0,0,0,0)'}
@@ -80,14 +102,15 @@ const Login = props => {
           <View style={styles.sectionStyle}>
             <Image style={styles.img} source={require('../img/lock.png')} />
             <Text style={styles.text}>|</Text>
-            <TextInput
+            <TextInput onChangeText={setPassword}
               style={{flex: 1, fontSize: 16}}
               placeholder="Mật khẩu"
               underlineColorAndroid={'rgba(0,0,0,0)'}
             />
           </View>
           <Pressable style={styles.btn1}>
-            <LinearTextGradient
+            <Pressable onPress={dangNhapNe}>
+                          <LinearTextGradient
               style={{
                 fontSize: 20,
                 fontWeight: 'bold',
@@ -95,9 +118,14 @@ const Login = props => {
               locations={[0, 1]}
               colors={['#5200FF', '#FF00B7']}
               start={{x: 0, y: 0}}
-              end={{x: 1, y: 0}}>
+              end={{x: 1, y: 0}} >
+
+
               <Text> Đăng nhập</Text>
+              
             </LinearTextGradient>
+            </Pressable>
+
           </Pressable>
           <LinearGradient colors={['#5200FF', '#FF00B7']} style={styles.btn}>
             <Pressable onPress={dangKy}>

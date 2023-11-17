@@ -6,6 +6,7 @@ import Lichsukham from './src/chuc_nang/Lichsukham';
 import Benh_an from './src/chuc_nang/Benh_an';
 import Don_thuoc from './src/chuc_nang/Don_thuoc';
 import Lich_kham from './src/chuc_nang/Lich_kham';
+import infomation from './src/chuc_nang/information';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -23,13 +24,9 @@ const App = () => {
         <Tab.Screen name="Lichsukham" component={Lichsukham} />
         <Tab.Screen name="Benh_an" component={Benh_an} />
         <Tab.Screen name="Don_thuoc" component={Don_thuoc} />
-        
         <Tab.Screen name="Register" component={Register} />
-        <Tab.Screen name="Forgot_Password" component={Forgot_Password} />
         <Tab.Screen name="Login" component={Login} />
-        
-
- 
+        <Tab.Screen name="infomation" component={infomation} />
       </Tab.Navigator>
     </NavigationContainer>
   );

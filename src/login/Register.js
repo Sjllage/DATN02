@@ -6,19 +6,18 @@ import {LinearTextGradient} from 'react-native-text-gradient';
 
 const Register = (props) => {
     const { navigation } = props;
-    const [nameUser, setnameUser] = useState("");
-    const [usernameUser, setusernameUser] = useState("");
-    const [passwordUser, setpasswordUser] = useState("");
-    const [confirmpasswordUser, setconfirmpasswordUser] = useState("");
-    const [emailUser, setemailUser] = useState("");
-    const [phoneUser, setphoneUser] = useState("");
+    const [name, setname] = useState("");
+    const [username, setusername] = useState("");
+    const [password, setpassword] = useState("");
+    const [email, setemail] = useState("");
+    const [sdt, setsdt] = useState("");
     
     const dangKyNe = async () => {
-        console.log(nameUser, usernameUser, passwordUser, confirmpasswordUser, emailUser, phoneUser);
+        console.log(name, password, email, sdt);
         try {
             const response = await AxiosIntance().
-                post("users/register", 
-                     {name: nameUser, username: usernameUser, password: passwordUser, confirmpassword: confirmpasswordUser, email: emailUser, phone: phoneUser});
+                post("user/register", 
+                     { name: name, password: password, email: email, sdt: sdt});
 
             console.log(response);
             if(response.error == false) {
@@ -57,32 +56,32 @@ const Register = (props) => {
             <View style={styles.sectionStyle}>
                 <Image style={styles.img} source={require('../img/user.png')} />
                 <Text style={styles.text}>|</Text>
-                <TextInput style={{flex: 1,fontSize: 16 }} placeholder=' Họ và tên' underlineColorAndroid={'rgba(0,0,0,0)'} onChangeText={setnameUser}/>
+                <TextInput style={{flex: 1,fontSize: 16 }} placeholder=' Họ và tên' underlineColorAndroid={'rgba(0,0,0,0)'} onChangeText={setname}/>
             </View>
-            <View style={styles.sectionStyle}>
+            {/* <View style={styles.sectionStyle}>
                 <Image style={styles.img} source={require('../img/user.png')} />
                 <Text style={styles.text}>|</Text>
-                <TextInput style={{flex: 1,fontSize: 16 }} placeholder='Tên đăng nhập' underlineColorAndroid={'rgba(0,0,0,0)'} onChangeText={setusernameUser}/>
+                <TextInput style={{flex: 1,fontSize: 16 }} placeholder='Tên đăng nhập' underlineColorAndroid={'rgba(0,0,0,0)'} onChangeText={setname}/>
+            </View> */}
+            <View style={styles.sectionStyle}>
+                <Image style={styles.img} source={require('../img/lock.png')} />
+                <Text style={styles.text}>|</Text>
+                <TextInput style={{flex: 1,fontSize: 16 }} placeholder='Mật khẩu' underlineColorAndroid={'rgba(0,0,0,0)'} onChangeText={setpassword}/>
             </View>
             <View style={styles.sectionStyle}>
                 <Image style={styles.img} source={require('../img/lock.png')} />
                 <Text style={styles.text}>|</Text>
-                <TextInput style={{flex: 1,fontSize: 16 }} placeholder='Mật khẩu' underlineColorAndroid={'rgba(0,0,0,0)'} onChangeText={setpasswordUser}/>
-            </View>
-            <View style={styles.sectionStyle}>
-                <Image style={styles.img} source={require('../img/lock.png')} />
-                <Text style={styles.text}>|</Text>
-                <TextInput style={{flex: 1,fontSize: 16 }} placeholder='Xác nhận mật khẩu' underlineColorAndroid={'rgba(0,0,0,0)'} onChangeText={setconfirmpasswordUser}/>
+                <TextInput style={{flex: 1,fontSize: 16 }} placeholder='Xác nhận mật khẩu' underlineColorAndroid={'rgba(0,0,0,0)'} onChangeText={setpassword}/>
             </View>
             <View style={styles.sectionStyle}>
                 <Image style={styles.img} source={require('../img/mail.png')} />
                 <Text style={styles.text}>|</Text>
-                <TextInput style={{flex: 1,fontSize: 16 }} placeholder='Email' underlineColorAndroid={'rgba(0,0,0,0)'} onChangeText={setemailUser}/>
+                <TextInput style={{flex: 1,fontSize: 16 }} placeholder='Email' underlineColorAndroid={'rgba(0,0,0,0)'} onChangeText={setemail}/>
             </View>
             <View style={styles.sectionStyle}>
                 <Image style={styles.img} source={require('../img/Vector.png')} />
                 <Text style={styles.text}>|</Text>
-                <TextInput style={{flex: 1,fontSize: 16 }} placeholder=' Số điện thoại' underlineColorAndroid={'rgba(0,0,0,0)'} onChangeText={setphoneUser}/>
+                <TextInput style={{flex: 1,fontSize: 16 }} placeholder=' Số điện thoại' underlineColorAndroid={'rgba(0,0,0,0)'} onChangeText={setsdt}/>
             </View>
             
 

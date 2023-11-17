@@ -14,9 +14,29 @@ import {LinearTextGradient} from 'react-native-text-gradient';
 
 const Forgot_Password = props => {
   const {navigation} = props;
+  const [resetString, setResetString] = useState("");
+  const [newPassword, setNewPassword] = useState("");
   //chuyen trang register
   const dangKy = () => {
-    navigation.navigate('Login');
+    navigation.navigate('Register');
+  };
+  const dangNhapNe = async () => {
+    console.log(resetString, newPassword);
+    try {
+      const response = await AxiosIntance().post("user/resetPassword", {
+        resetString: resetString,
+        newPassword: newPassword,
+      });
+      console.log(response);
+      if (response.error == false) {
+        ToastAndroid.show("Dang nhap thanh cong", ToastAndroid.SHORT);
+        navigation.navigate('Home');
+      } else {
+        ToastAndroid.show("Dang nhap that bai", ToastAndroid.SHORT);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <ScrollView>
@@ -44,6 +64,7 @@ const Forgot_Password = props => {
               style={{flex: 1, fontSize: 16}}
               placeholder="Tên đăng nhập"
               underlineColorAndroid={'rgba(0,0,0,0)'}
+              onChangeText={setResetString}
             />
           </View>
           <View style={styles.sectionStyle}>
@@ -62,6 +83,7 @@ const Forgot_Password = props => {
               style={{flex: 1, fontSize: 16}}
               placeholder="Mật khẩu"
               underlineColorAndroid={'rgba(0,0,0,0)'}
+              onChangeText={setNewPassword}
             />
           </View>
           <View style={styles.sectionStyle}>
