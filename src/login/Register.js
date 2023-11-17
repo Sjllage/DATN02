@@ -1,156 +1,163 @@
-import { Image, Pressable, SafeAreaView, StyleSheet, Text, TextInput, ToastAndroid, View, ScrollView } from 'react-native'
-import React, { useState } from 'react'
-import AxiosIntance from '../ultil/AxiosIntance';
-import LinearGradient from 'react-native-linear-gradient';
-import {LinearTextGradient} from 'react-native-text-gradient';
-
-const Register = (props) => {
+import {
+    Image,
+    Pressable,
+    SafeAreaView,
+    StyleSheet,
+    Text,
+    TextInput,
+    ToastAndroid,
+    View,
+    ScrollView,
+  } from 'react-native';
+  import React, { useState } from 'react';
+  import AxiosIntance from '../ultil/AxiosIntance';
+  import LinearGradient from 'react-native-linear-gradient';
+  import { LinearTextGradient } from 'react-native-text-gradient';
+  
+  const Register = (props) => {
     const { navigation } = props;
-    const [name, setname] = useState("");
-    const [username, setusername] = useState("");
-    const [password, setpassword] = useState("");
-    const [email, setemail] = useState("");
-    const [sdt, setsdt] = useState("");
-    
+    const [name, setName] = useState("");
+    const [password, setPassword] = useState("");
+    const [email, setEmail] = useState("");
+    const [sdt, setSdt] = useState("");
+  
     const dangKyNe = async () => {
-        console.log(name, password, email, sdt);
-        try {
-            const response = await AxiosIntance().
-                post("user/register", 
-                     { name: name, password: password, email: email, sdt: sdt});
-
-            console.log(response);
-            if(response.error == false) {
-                ToastAndroid.show("Dang ky thanh cong", ToastAndroid.SHORT);
-                navigation.navigate('Login');
-            }else{
-                ToastAndroid.show("Dang ky that bai", ToastAndroid.SHORT);
-            }
-        } catch (error) {
-            console.log(error);
-            
+      console.log(name, email, sdt, password);
+      try {
+        const response = await AxiosIntance().post("user/register", {
+          name: name,
+          email: email,
+          sdt: sdt,
+          password: password,
+        });
+        console.log(response);
+        if (response.result == true) {
+          ToastAndroid.show("Đăng ký thành công", ToastAndroid.SHORT);
+          navigation.navigate('Login');
+        } else {
+          ToastAndroid.show("Đăng ký thất bại", ToastAndroid.SHORT);
         }
-    }
-
-
-  return (
-    <ScrollView>
-            <SafeAreaView style={{ flex: 1 }}>
-          
-        <View style={styles.container}>
-            <Image style={styles.logo} source={require('../img/logo.png')} />
+      } catch (error) {
+        console.log(error);
+      }
+    };
+  
+    return (
+      <ScrollView>
+        <SafeAreaView style={styles.container}>
+          <Image style={styles.logo} source={require('../img/logo.png')} />
           <LinearTextGradient
-            style={{
-              fontWeight: 'bold',
-              fontSize: 30,
-              textDecorationLine: 'underline',
-              fontWeight: 'bold',
-              margin: 20,
-            }}
+            style={styles.title}
             locations={[0, 1]}
             colors={['#5200FF', '#FF00B7']}
-            start={{x: 0, y: 0}}
-            end={{x: 1, y: 0}}>
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 0 }}
+          >
             <Text>Đăng ký</Text>
           </LinearTextGradient>
-            <View style={styles.sectionStyle}>
-                <Image style={styles.img} source={require('../img/user.png')} />
-                <Text style={styles.text}>|</Text>
-                <TextInput style={{flex: 1,fontSize: 16 }} placeholder=' Họ và tên' underlineColorAndroid={'rgba(0,0,0,0)'} onChangeText={setname}/>
+          <View style={styles.inputContainer}>
+            <View style={styles.inputSection}>
+              <Image style={styles.inputIcon} source={require('../img/user.png')} />
+              <TextInput
+                style={styles.input}
+                placeholder='Số điện thoại hoặc email'
+                underlineColorAndroid={'rgba(0,0,0,0)'}
+                onChangeText={setName}
+              />
             </View>
-            {/* <View style={styles.sectionStyle}>
-                <Image style={styles.img} source={require('../img/user.png')} />
-                <Text style={styles.text}>|</Text>
-                <TextInput style={{flex: 1,fontSize: 16 }} placeholder='Tên đăng nhập' underlineColorAndroid={'rgba(0,0,0,0)'} onChangeText={setname}/>
-            </View> */}
-            <View style={styles.sectionStyle}>
-                <Image style={styles.img} source={require('../img/lock.png')} />
-                <Text style={styles.text}>|</Text>
-                <TextInput style={{flex: 1,fontSize: 16 }} placeholder='Mật khẩu' underlineColorAndroid={'rgba(0,0,0,0)'} onChangeText={setpassword}/>
+            <View style={styles.inputSection}>
+              <Image style={styles.inputIcon} source={require('../img/lock.png')} />
+              <TextInput
+                style={styles.input}
+                placeholder='Mật khẩu'
+                secureTextEntry
+                underlineColorAndroid={'rgba(0,0,0,0)'}
+                onChangeText={setPassword}
+              />
             </View>
-            <View style={styles.sectionStyle}>
-                <Image style={styles.img} source={require('../img/lock.png')} />
-                <Text style={styles.text}>|</Text>
-                <TextInput style={{flex: 1,fontSize: 16 }} placeholder='Xác nhận mật khẩu' underlineColorAndroid={'rgba(0,0,0,0)'} onChangeText={setpassword}/>
+            <View style={styles.inputSection}>
+              <Image style={styles.inputIcon} source={require('../img/lock.png')} />
+              <TextInput
+                style={styles.input}
+                placeholder='Nhập lại mật khẩu'
+                secureTextEntry
+                underlineColorAndroid={'rgba(0,0,0,0)'}
+                onChangeText={setPassword}
+              />
             </View>
-            <View style={styles.sectionStyle}>
-                <Image style={styles.img} source={require('../img/mail.png')} />
-                <Text style={styles.text}>|</Text>
-                <TextInput style={{flex: 1,fontSize: 16 }} placeholder='Email' underlineColorAndroid={'rgba(0,0,0,0)'} onChangeText={setemail}/>
-            </View>
-            <View style={styles.sectionStyle}>
-                <Image style={styles.img} source={require('../img/Vector.png')} />
-                <Text style={styles.text}>|</Text>
-                <TextInput style={{flex: 1,fontSize: 16 }} placeholder=' Số điện thoại' underlineColorAndroid={'rgba(0,0,0,0)'} onChangeText={setsdt}/>
-            </View>
-            
-
-            <LinearGradient colors={['#5200FF', '#FF00B7']} style={styles.btn} >
-            <Pressable onPress={dangKyNe} >
-              <Text style={{color: '#fff', fontSize: 20, fontWeight: 'bold'}}>
+          </View>
+  
+          <LinearGradient
+            colors={['#5200FF', '#FF00B7']}
+            style={styles.btn}
+          >
+            <Pressable onPress={dangKyNe}>
+              <Text style={styles.btnText}>
                 Đăng ký
               </Text>
             </Pressable>
           </LinearGradient>
-        </View>
-
-    </SafeAreaView>
-    </ScrollView>
-
-  )
-}
-
-export default Register
-
-const styles = StyleSheet.create({
+        </SafeAreaView>
+      </ScrollView>
+    );
+  };
+  
+  export default Register;
+  
+  const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
+      flex: 1,
+      backgroundColor: '#fff',
+      alignItems: 'center',
+      justifyContent: 'center',
+      paddingHorizontal: 20,
+      paddingVertical: 20,
     },
-    sectionStyle: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#fff',
-        borderWidth: 1,
-        borderColor: '#5200FF',
-        height: 50,
-        width: 310,
-        margin: 5
-        
-        
+    title: {
+      fontWeight: 'bold',
+      fontSize: 30,
+      textDecorationLine: 'underline',
+      marginVertical: 20,
     },
-   img: {
-       marginLeft:10,
-       height: 24,
-       width: 24
-       
-   },
-   text: {
-       fontSize: 40,
-       color: '#5200FF',
-       marginLeft: 5,
-       marginRight: 5,
-       marginTop: -5,
-    
-   },
-   logo: {
-       marginTop: 70,
-       alignItems: 'center',
- 
-   },
-   btn: {
-       backgroundColor: '#5200FF',
-       width: 310,
-       height: 50,
-       alignItems: 'center',
-       justifyContent: 'center',
-       borderRadius: 10,
-       margin: 20
-
-       
-   }
-
-})
+    logo: {
+      marginTop: 30,
+      alignItems: 'center',
+    },
+    inputContainer: {
+      width: '100%',
+    },
+    inputSection: {
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: '#fff',
+      borderWidth: 1,
+      borderColor: '#5200FF',
+      height: 50,
+      marginVertical: 10,
+    },
+    inputIcon: {
+      marginLeft: 10,
+      height: 24,
+      width: 24,
+    },
+    input: {
+      flex: 1,
+      fontSize: 16,
+    },
+    btn: {
+      backgroundColor: '#5200FF',
+      width: '100%',
+      height: 50,
+      alignItems: 'center',
+      justifyContent: 'center',
+      borderRadius: 10,
+      marginVertical: 20,
+    },
+    btnText: {
+      color: '#fff',
+      fontSize: 20,
+      fontWeight: 'bold',
+    },
+  });
+  

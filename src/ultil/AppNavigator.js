@@ -7,19 +7,22 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Lich_kham from '../chuc_nang/Lich_kham';
 import { Context } from './AppContext';
-
+import { NavigationContainer } from '@react-navigation/native';
 
 //login, register => stack
 const Stack = createNativeStackNavigator();
 const Users = () => {
   return (
+    <NavigationContainer>
     <Stack.Navigator
       initialRouteName="Login"
       screenOptions={{headerShown: false}}>
       <Stack.Screen name="Register" component={Register} />
       <Stack.Screen name="Forgot_Password" component={Forgot_Password} />
       <Stack.Screen name="Login" component={Login} />
+      
     </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 //Main => tab

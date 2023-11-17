@@ -1,12 +1,12 @@
+import React from 'react';
 import {
   StyleSheet,
   Text,
   View,
   Pressable,
   ScrollView,
-  StatusBar,
+  TextInput,
 } from 'react-native';
-import React, {useState} from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 
 const Lich_kham = () => {
@@ -14,183 +14,66 @@ const Lich_kham = () => {
     <View style={styles.container}>
       <LinearGradient colors={['#5200FF', '#FF00B7']} style={styles.btn}>
         <Pressable>
-          <Text style={{color: '#fff', fontSize: 20, fontWeight: 'bold'}}>
-            Thông tin đặt khám
-          </Text>
+          <Text style={styles.btnText}>Thông tin đặt khám</Text>
         </Pressable>
       </LinearGradient>
 
-      <ScrollView>
-        <View>
-          <Text style={{fontSize: 20, marginTop: 10, marginLeft: 10}}>
-            Chọn ngày/tháng năm :
-          </Text>
+      <ScrollView contentContainerStyle={styles.scrollContainer}>
+        <View style={styles.datePickerContainer}>
+          <Text style={styles.label}>Chọn ngày/tháng năm:</Text>
+          <TextInput style={styles.input} placeholder="DD/MM/YYYY" />
         </View>
-        <View>
-          <Text style={{fontSize: 20, marginTop: 10, marginLeft: 10}}>
-            Chọn thời gian cụ thể khám :
-          </Text>
-          <View style={{flexDirection: 'row', left: 30}}>
-            <Pressable>
-              <Text
-                style={{
-                  fontSize: 18,
-                  marginTop: 10,
-                  marginLeft: 10,
-                  backgroundColor: '#D9D9D9',
-                  color: '#000000',
-                  width: 100,
-                  height: 30,
-                  textAlign: 'center',
-                }}>
-                09:00 AM
-              </Text>
+
+        <View style={styles.timePickerContainer}>
+          <Text style={styles.label}>Chọn thời gian cụ thể khám:</Text>
+          <View style={styles.timeSlots}>
+            <Pressable style={styles.timeSlot}>
+              <Text style={styles.timeSlotText}>09:00 AM</Text>
             </Pressable>
-            <Pressable>
-              <Text
-                style={{
-                  fontSize: 18,
-                  marginTop: 10,
-                  marginLeft: 10,
-                  backgroundColor: '#D9D9D9',
-                  color: '#000000',
-                  width: 100,
-                  height: 30,
-                  textAlign: 'center',
-                }}>
-                09:00 AM
-              </Text>
+            <Pressable style={styles.timeSlot}>
+              <Text style={styles.timeSlotText}>10:00 AM</Text>
             </Pressable>
-            <Pressable>
-              <Text
-                style={{
-                  fontSize: 18,
-                  marginTop: 10,
-                  marginLeft: 10,
-                  backgroundColor: '#D9D9D9',
-                  color: '#000000',
-                  width: 100,
-                  height: 30,
-                  textAlign: 'center',
-                }}>
-                09:00 AM
-              </Text>
+            <Pressable style={styles.timeSlot}>
+              <Text style={styles.timeSlotText}>11:00 AM</Text>
             </Pressable>
           </View>
         </View>
 
-        <View style={{flexDirection: 'row', left: 30}}>
-          <Pressable>
-            <Text
-              style={{
-                fontSize: 18,
-                marginTop: 10,
-                marginLeft: 10,
-                backgroundColor: '#D9D9D9',
-                color: '#000000',
-                width: 100,
-                height: 30,
-                textAlign: 'center',
-              }}>
-              09:00 AM
-            </Text>
-          </Pressable>
-          <Pressable>
-            <Text
-              style={{
-                fontSize: 18,
-                marginTop: 10,
-                marginLeft: 10,
-                backgroundColor: '#D9D9D9',
-                color: '#000000',
-                width: 100,
-                height: 30,
-                textAlign: 'center',
-              }}>
-              09:00 AM
-            </Text>
-          </Pressable>
-          <Pressable>
-            <Text
-              style={{
-                fontSize: 18,
-                marginTop: 10,
-                marginLeft: 10,
-                backgroundColor: '#D9D9D9',
-                color: '#000000',
-                width: 100,
-                height: 30,
-                textAlign: 'center',
-              }}>
-              09:00 AM
-            </Text>
-          </Pressable>
+        <View style={styles.userInfoContainer}>
+          <Text style={styles.label}>Thông tin người đặt lịch:</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Họ tên đầy đủ"
+            placeholderTextColor="#A9A9A9"
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Ngày sinh"
+            placeholderTextColor="#A9A9A9"
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Số điện thoại"
+            placeholderTextColor="#A9A9A9"
+          />
+          <Text style={styles.label}>Lý do khám:</Text>
+          <TextInput
+            style={styles.textArea}
+            placeholder="* Vui lòng mô tả triệu chứng của bạn và nhu cầu thăm khám"
+            multiline
+            numberOfLines={4}
+          />
         </View>
 
-        <View style={{flexDirection: 'row', left: 30}}>
-          <Pressable>
-            <Text
-              style={{
-                fontSize: 18,
-                marginTop: 10,
-                marginLeft: 10,
-                backgroundColor: '#D9D9D9',
-                color: '#000000',
-                width: 100,
-                height: 30,
-                textAlign: 'center',
-              }}>
-              09:00 AM
-            </Text>
-          </Pressable>
-          <Pressable>
-            <Text
-              style={{
-                fontSize: 18,
-                marginTop: 10,
-                marginLeft: 10,
-                backgroundColor: '#D9D9D9',
-                color: '#000000',
-                width: 100,
-                height: 30,
-                textAlign: 'center',
-              }}>
-              09:00 AM
-            </Text>
-          </Pressable>
-          <Pressable>
-            <Text
-              style={{
-                fontSize: 18,
-                marginTop: 10,
-                marginLeft: 10,
-                backgroundColor: '#D9D9D9',
-                color: '#000000',
-                width: 100,
-                height: 30,
-                textAlign: 'center',
-              }}>
-              09:00 AM
-            </Text>
-          </Pressable>
-        </View>
-
-        <View style={{marginTop: 10, marginLeft: 10}}>
-          <Text style={{fontSize: 20, marginTop: 10}}>Chọn giờ khám :</Text>
-          <Text style={{fontSize: 20, marginTop: 10}}>Tuổi người bệnh :</Text>
-          <Text style={{fontSize: 20, marginTop: 10}}>Mô tả :</Text>
-        </View>
         <LinearGradient colors={['#5200FF', '#FF00B7']} style={styles.btn1}>
           <Pressable>
-            <Text style={{color: '#fff', fontSize: 20}}>Đặt lịch khám</Text>
+            <Text style={styles.btnText}>Đặt lịch khám</Text>
           </Pressable>
         </LinearGradient>
       </ScrollView>
     </View>
   );
 };
-
-export default Lich_kham;
 
 const styles = StyleSheet.create({
   container: {
@@ -211,4 +94,62 @@ const styles = StyleSheet.create({
     marginTop: 50,
     borderRadius: 10,
   },
+  btnText: {
+    color: '#fff',
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  scrollContainer: {
+    paddingHorizontal: 20,
+    paddingBottom: 20,
+  },
+  datePickerContainer: {
+    marginTop: 10,
+  },
+  timePickerContainer: {
+    marginTop: 20,
+  },
+  label: {
+    fontSize: 20,
+    marginTop: 10,
+    fontWeight: 'bold',
+  },
+  input: {
+    borderWidth: 0.5,
+    height: 40,
+    width: '100%',
+    marginTop: 5,
+    paddingLeft: 10,
+    borderRadius: 5,
+  },
+  timeSlots: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 10,
+  },
+  timeSlot: {
+    backgroundColor: '#D9D9D9',
+    color: '#000000',
+    width: '30%',
+    height: 30,
+    textAlign: 'center',
+    justifyContent: 'center',
+    borderRadius: 5,
+  },
+  timeSlotText: {
+    fontSize: 14,
+  },
+  userInfoContainer: {
+    marginTop: 20,
+  },
+  textArea: {
+    borderWidth: 0.5,
+    height: 100,
+    width: '100%',
+    marginTop: 5,
+    paddingLeft: 10,
+    borderRadius: 5,
+  },
 });
+
+export default Lich_kham;

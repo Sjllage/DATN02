@@ -1,34 +1,101 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import Benh_an from './Benh_an'
+import { StyleSheet, Text, View, Pressable, ScrollView, FlatList } from 'react-native'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios';
+import AxiosIntance from '../ultil/AxiosIntance';
+import Benh_an from './Benh_an';
+import LinearGradient from 'react-native-linear-gradient';
 
-const ListBenhan = () => {
+const ListBenhan = (props) => {
+  const { navigation } = props;
+  const [dataNe, setdataNe] = useState([]);
+  const [isLoading, setisLoading] = useState(true);
+
+  useEffect(() => {
+      const getNews = async () => {
+          const response = await AxiosIntance().get("benhan/get-all");
+          console.log(response);
+          if (response.result == true) {// lấy dữ liệu thành công 
+              setdataNe(response.benhan);
+              setisLoading(false);
+          } else {
+              ToastAndroid.show("Lấy dữ liệu thất bại", ToastAndroid.SHORT);
+          }
+      }
+      getNews();
+
+      return () => {
+
+      }
+
+  },
+      []);
+
+  let timeOut = null;
+  const countDownSearch = (searchText) => {
+      if(timeOut){
+          clearTimeout(timeOut);
+      }
+      timeOut = setTimeout(() =>{
+          search(searchText);
+      }, 3000);
+  }
+  const search = async (searchText) => {
+      setisLoading(true);
+      const response = await AxiosIntance().get("benhan/search-by-name?name="+ searchText);
+      if(response.result == true){
+          setdataNe(response.product);
+          setisLoading(false);
+      }else{
+          ToastAndroid.show("Lay du lieu that bai roi huhu", ToastAndroid.SHORT);
+      }
+  };
+  
   return (
+    <><View>
+    <LinearGradient colors={['#5200FF', '#FF00B7']} style={styles.btn}>
+       <Pressable>
+         <Text style={{color: '#fff', fontSize: 20, fontWeight: 'bold'}}>
+           Bệnh án
+         </Text>
+       </Pressable>
+     </LinearGradient>
+   </View>
     <View>
-      <FlatList
-      data={dataNe}
-      renderItem={({item}) => <Benh_an dulieu={item} />}
-      keyExtractor={item => item.id}
-      />
-    </View>
-  )
-}
+        <FlatList
+          data={dataNe}
+          renderItem={({ item }) => <Benh_an dulieu={item} navigation={navigation}/>}
+          keyExtractor={item => item._id} />
+      </View></>
+  );
+};
 
 export default ListBenhan
 
-const styles = StyleSheet.create({})
-const dataNe = [
-    {
-        "id": "1",
-        "title": "Trường công lập đầu tiên dạy và thi chương trình dự bị đại học Mỹ",
-        "content": "Phổ thông Năng khiếu là trường công lập đầu tiên ở Việt Nam dạy và thi 6 môn của chương trình Advanced Placement (AP), thường gọi là chương trình dự bị đại học Mỹ.",
-        "image": "https://i1-vnexpress.vnecdn.net/2023/02/02/328463889-891024988600042-6177-9136-2603-1675295134.jpg?w=680&h=0&q=100&dpr=1&fit=crop&s=BCVEDMn0Smx1XLiCRi0rrA",
-        "createdAt": "2023-01-12T06:26:17.539Z",
-        "createdBy": {
-            "_id": "63ac39aeedf7c80016c57a67",
-            "name": "",
-            "avatar": ""
-        }
-    },
-   
-  ]
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  btn: {
+    backgroundColor: '#5200FF',
+    height: 60,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  sectionStyle: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#fff',
+    borderWidth: 1,
+    borderColor: '#5200FF',
+    height: 200,
+    width: 320,
+    margin: 10,
+    borderRadius: 10,
+    left: 30,
+  },
+})

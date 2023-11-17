@@ -4,35 +4,17 @@ import LinearGradient from 'react-native-linear-gradient';
 
 const Benh_an = (props) => {
 
-const {dulieu}= props;
-
+const {dulieu, navigation}= props;
+    const { name } = product;
+    console.log(product);
   return (
-    <View>
-     <LinearGradient colors={['#5200FF', '#FF00B7']} style={styles.btn}>
-        <Pressable>
-          <Text style={{color: '#fff', fontSize: 20, fontWeight: 'bold'}}>
-            Bệnh án
-          </Text>
-        </Pressable>
-      </LinearGradient>
-      <ScrollView>
-        <View>
-          <View style={styles.sectionStyle}>
-                <View>
-                  <Text>Bệnh nhân:</Text>
-                  <Text>Giới tính: </Text>
-                  <Text>Phòng Khám:</Text>
-                  <Text>Ngày nhập viện: </Text>
-                  <Text>Ngày xuất viện: </Text>
-                  <Text>Bệnh án: </Text>
-                  <Text>Thuốc đã kê đơn: </Text>
-                  <Text>Trạng thái: </Text>
-                  <Text>ngày tạo bệnh án:</Text>
-                </View>
-          </View>
+    <TouchableOpacity>
+      <View style={styles.container}>
+        <View style={styles.content}>
+          <Text style={styles.textTile}>{name}</Text>
         </View>
-      </ScrollView>
-    </View>
+      </View>
+    </TouchableOpacity>
   );
 };
 

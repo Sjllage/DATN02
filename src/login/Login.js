@@ -7,11 +7,14 @@ import {
   TextInput,
   View,
   ScrollView,
+  TouchableOpacity,
 } from 'react-native';
 import React , {useState} from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import {LinearTextGradient} from 'react-native-text-gradient';
 import AxiosIntance from '../ultil/AxiosIntance';
+import Register from './Register';
+
 const Login = (props) => {
   const {navigation} = props;
   const [email, setEmail] = useState("");
@@ -95,7 +98,7 @@ const Login = (props) => {
             <Text style={styles.text}>|</Text>
             <TextInput onChangeText={setEmail}
               style={{flex: 1, fontSize: 16}}
-              placeholder="Tên đăng nhập"
+              placeholder="Số điện thoại/email đã đăng ký"
               underlineColorAndroid={'rgba(0,0,0,0)'}
             />
           </View>
@@ -104,7 +107,7 @@ const Login = (props) => {
             <Text style={styles.text}>|</Text>
             <TextInput onChangeText={setPassword}
               style={{flex: 1, fontSize: 16}}
-              placeholder="Mật khẩu"
+              placeholder="Nhập mật khẩu"
               underlineColorAndroid={'rgba(0,0,0,0)'}
             />
           </View>
@@ -127,14 +130,8 @@ const Login = (props) => {
             </Pressable>
 
           </Pressable>
-          <LinearGradient colors={['#5200FF', '#FF00B7']} style={styles.btn}>
-            <Pressable onPress={dangKy}>
-              <Text style={{color: '#fff', fontSize: 20, fontWeight: 'bold'}}>
-                Đăng ký
-              </Text>
-            </Pressable>
-          </LinearGradient>
-          <Text
+          
+          {/* <Text
             style={{
               fontSize: 18,
               fontWeight: 'bold',
@@ -143,7 +140,31 @@ const Login = (props) => {
             }}
             onPress={dangNhap}>
             Quên mật khẩu
-          </Text>
+          </Text> */}
+          <TouchableOpacity onPress={Register}>
+        {/* <Text style={styles.dangKyText}>
+          Bạn chưa có tài khoản? <Text style={{ textDecorationLine: 'underline' }}>Đăng ký ngay.</Text>
+        </Text> */}
+        <Pressable style={styles.btn1}>
+            <Pressable onPress={Register}>
+            <LinearTextGradient
+              style={{
+                fontSize: 20,
+                fontWeight: 'bold',
+              }}
+              locations={[0, 1]}
+              colors={['#5200FF', '#FF00B7']}
+              start={{x: 0, y: 0}}
+              end={{x: 1, y: 0}} >
+
+
+              <Text> Đăng ký</Text>
+              
+            </LinearTextGradient>
+            </Pressable>
+
+          </Pressable>
+      </TouchableOpacity>
         </View>
       </SafeAreaView>
     </ScrollView>
