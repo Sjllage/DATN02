@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 
-const ListBenhan = () => {
+const BmiCalculatorScreen = () => {
   const [height, setHeight] = useState('');
   const [weight, setWeight] = useState('');
   const [bmiResult, setBmiResult] = useState(null);
@@ -14,13 +14,13 @@ const ListBenhan = () => {
 
     // Đánh giá BMI và cập nhật kết quả
     if (bmi < 18.5) {
-      setBmiResult(`BMI: ${bmi.toFixed(2)} - Thể trạng gầy`);
+      setBmiResult(`BMI: ${bmi.toFixed(2)} - Underweight`);
     } else if (bmi >= 18.5 && bmi < 24.9) {
-      setBmiResult(`BMI: ${bmi.toFixed(2)} - Cân đối`);
+      setBmiResult(`BMI: ${bmi.toFixed(2)} - Normal weight`);
     } else if (bmi >= 25 && bmi < 29.9) {
-      setBmiResult(`BMI: ${bmi.toFixed(2)} - Thừa cân`);
+      setBmiResult(`BMI: ${bmi.toFixed(2)} - Overweight`);
     } else {
-      setBmiResult(`BMI: ${bmi.toFixed(2)} - Béo phì`);
+      setBmiResult(`BMI: ${bmi.toFixed(2)} - Obesity`);
     }
 
     // Lưu thời gian đo BMI (có thể sử dụng thư viện như moment.js)
@@ -32,20 +32,20 @@ const ListBenhan = () => {
     <View style={styles.container}>
       <Text style={styles.title}>BMI Calculator</Text>
       <TextInput
-        placeholder="Enter height (cm)"
+        placeholder="Nhập chiều cao"
         keyboardType="numeric"
         style={styles.input}
         value={height}
         onChangeText={(text) => setHeight(text)}
       />
       <TextInput
-        placeholder="Enter weight (kg)"
+        placeholder="Nhập cân nặng (kg)"
         keyboardType="numeric"
         style={styles.input}
         value={weight}
         onChangeText={(text) => setWeight(text)}
       />
-      <Button title="Calculate BMI" onPress={calculateBMI} />
+      <Button title="Calculate BMI cm/kg" onPress={calculateBMI} />
       {bmiResult && <Text style={styles.result}>{bmiResult}</Text>}
     </View>
   );
@@ -75,4 +75,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ListBenhan;
+export default BmiCalculatorScreen;

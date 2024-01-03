@@ -1,6 +1,8 @@
 import { FlatList, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import Lichsukham from './Lichsukham'
+import ViewPropTypes from 'deprecated-react-native-prop-types';
+
 
 
 const ListLichKham = () => {

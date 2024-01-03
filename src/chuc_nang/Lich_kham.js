@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
+
 const Lich_kham = () => {
   return (
     <View style={styles.container}>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { ScrollView, StyleSheet, Text, View, Image, TextInput, Button, ToastAndroid } from 'react-native';
 import AxiosIntance from '../ultil/AxiosIntance';
 
+
 const Information = (props) => {
     const { navigation } = props;
     const [name, setName] = useState("");
@@ -54,8 +55,12 @@ const Information = (props) => {
                 placeholder='Số điện thoại'
                 style={styles.input}
             />
-           <Button title="Hoàn tất" color="#841584" onPress={capNhat} style={{ marginTop: -50 }} />
-
+          <Button
+    title="Hoàn tất"
+    color="#841584"
+    onPress={capNhat}
+    buttonStyle={styles.completeButton}  // Thêm dòng này
+/>
         </ScrollView>
     )
 }
@@ -92,5 +97,14 @@ const styles = StyleSheet.create({
         paddingHorizontal: 12,
         paddingVertical: 8,
         marginBottom:20,
+    },
+    completeButton: {
+        backgroundColor: '#5200FF',
+        width: '100%',
+        height: 50,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 10,
+        marginVertical: 20,
     },
 });

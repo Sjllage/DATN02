@@ -1,6 +1,8 @@
 import {StyleSheet, Text, View, Pressable, ScrollView} from 'react-native';
 import React from 'react';
 import LinearGradient from 'react-native-linear-gradient';
+import ViewPropTypes from 'deprecated-react-native-prop-types';
+
 
 const Don_thuoc = () => {
 

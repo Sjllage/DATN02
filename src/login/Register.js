@@ -8,6 +8,8 @@ import {
     ToastAndroid,
     View,
     ScrollView,
+    Touchable,
+    TouchableOpacity,
   } from 'react-native';
   import React, { useState } from 'react';
   import AxiosIntance from '../ultil/AxiosIntance';
@@ -91,11 +93,11 @@ import {
             colors={['#5200FF', '#FF00B7']}
             style={styles.btn}
           >
-            <Pressable onPress={dangKyNe}>
+            <TouchableOpacity onPress={dangKyNe}>
               <Text style={styles.btnText}>
                 Đăng ký
               </Text>
-            </Pressable>
+            </TouchableOpacity>
           </LinearGradient>
         </SafeAreaView>
       </ScrollView>
@@ -118,6 +120,7 @@ import {
       fontSize: 30,
       textDecorationLine: 'underline',
       marginVertical: 20,
+      color: '#007BFF', // Default blue color
     },
     logo: {
       marginTop: 30,
@@ -132,7 +135,7 @@ import {
       alignItems: 'center',
       backgroundColor: '#fff',
       borderWidth: 1,
-      borderColor: '#5200FF',
+      borderColor: '#007BFF', // Default blue color
       height: 50,
       marginVertical: 10,
     },
@@ -146,7 +149,7 @@ import {
       fontSize: 16,
     },
     btn: {
-      backgroundColor: '#5200FF',
+      backgroundColor: '#007BFF', // Default blue color
       width: '100%',
       height: 50,
       alignItems: 'center',
@@ -158,6 +161,12 @@ import {
       color: '#fff',
       fontSize: 20,
       fontWeight: 'bold',
+    },
+    selectedImage: {
+      width: 50,
+      height: 50,
+      borderRadius: 8,
+      marginRight: 8,
     },
   });
   

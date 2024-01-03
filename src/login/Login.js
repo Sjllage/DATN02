@@ -1,170 +1,67 @@
-import {
-  Image,
-  Pressable,
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-  ScrollView,
-  TouchableOpacity,
-} from 'react-native';
-import React , {useState} from 'react';
-import LinearGradient from 'react-native-linear-gradient';
-import {LinearTextGradient} from 'react-native-text-gradient';
+import React, { useState } from 'react';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, ScrollView, SafeAreaView, Image, ToastAndroid } from 'react-native';
 import AxiosIntance from '../ultil/AxiosIntance';
 import Register from './Register';
 
-const Login = (props) => {
-  const {navigation} = props;
-  const [email, setEmail] = useState("");
+const Login = ({ navigation }) => {
+  const [phoneOrEmail, setPhoneOrEmail] = useState("");
   const [password, setPassword] = useState("");
-  //chuyen trang register
-  const dangKy = () => {
-    navigation.navigate('Register');
-  };
-  const dangNhap = () => {
-    navigation.navigate('Forgot_Password');
-  };
 
   const dangNhapNe = async () => {
-    console.log(email, password);
+    console.log(phoneOrEmail, password);
     try {
       const response = await AxiosIntance().post("user/login", {
-        email: email,
+        email: phoneOrEmail,
         password: password,
       });
       console.log(response);
-      if (response.error == false) {
-        ToastAndroid.show("Dang nhap thanh cong", ToastAndroid.SHORT);
+      if (response.error === false) {
+        ToastAndroid.show("Đăng nhập thành công", ToastAndroid.SHORT);
         navigation.navigate('Home');
       } else {
-        ToastAndroid.show("Dang nhap that bai", ToastAndroid.SHORT);
+        ToastAndroid.show("Đăng nhập thất bại", ToastAndroid.SHORT);
       }
     } catch (error) {
       console.log(error);
     }
   };
 
+  const dangKy = () => {
+    navigation.navigate('Register');
+  };
+
   return (
     <ScrollView>
-      <SafeAreaView style={{flex: 1}}>
+      <SafeAreaView style={{ flex: 1 }}>
         <View style={styles.container}>
           <Image style={styles.logo} source={require('../img/logo.png')} />
-          <LinearTextGradient
-            style={{
-              fontSize: 24,
-
-              fontWeight: 'bold',
-              margin: 10,
-            }}
-            locations={[0, 1]}
-            colors={['#5200FF', '#FF00B7']}
-            start={{x: 0, y: 0}}
-            end={{x: 1, y: 0}}>
-            <Text>Chào mừng đến với</Text>
-          </LinearTextGradient>
-
-          <LinearTextGradient
-            style={{
-              fontSize: 48,
-
-              margin: 10,
-              fontWeight: 'bold',
-            }}
-            locations={[0, 1]}
-            colors={['#5200FF', '#FF00B7']}
-            start={{x: 0, y: 0}}
-            end={{x: 1, y: 0}}>
-            <Text>Tagoca</Text>
-          </LinearTextGradient>
-
-          <LinearTextGradient
-            style={{
-              fontSize: 20,
-
-              fontWeight: 'bold',
-              margin: 10,
-            }}
-            locations={[0, 1]}
-            colors={['#5200FF', '#FF00B7']}
-            start={{x: 0, y: 0}}
-            end={{x: 1, y: 0}}>
-            <Text> Vì sức khỏe của bạn</Text>
-          </LinearTextGradient>
-
           <View style={styles.sectionStyle}>
             <Image style={styles.img} source={require('../img/user.png')} />
-            <Text style={styles.text}>|</Text>
-            <TextInput onChangeText={setEmail}
-              style={{flex: 1, fontSize: 16}}
+            <TextInput
+              style={{ flex: 1, fontSize: 16 }}
               placeholder="Số điện thoại/email đã đăng ký"
               underlineColorAndroid={'rgba(0,0,0,0)'}
+              value={phoneOrEmail}
+              onChangeText={(text) => setPhoneOrEmail(text)}
             />
           </View>
           <View style={styles.sectionStyle}>
             <Image style={styles.img} source={require('../img/lock.png')} />
-            <Text style={styles.text}>|</Text>
-            <TextInput onChangeText={setPassword}
-              style={{flex: 1, fontSize: 16}}
+            <TextInput
+              style={{ flex: 1, fontSize: 16 }}
               placeholder="Nhập mật khẩu"
+              secureTextEntry
               underlineColorAndroid={'rgba(0,0,0,0)'}
+              value={password}
+              onChangeText={(text) => setPassword(text)}
             />
           </View>
-          <Pressable style={styles.btn1}>
-            <Pressable onPress={dangNhapNe}>
-                          <LinearTextGradient
-              style={{
-                fontSize: 20,
-                fontWeight: 'bold',
-              }}
-              locations={[0, 1]}
-              colors={['#5200FF', '#FF00B7']}
-              start={{x: 0, y: 0}}
-              end={{x: 1, y: 0}} >
-
-
-              <Text> Đăng nhập</Text>
-              
-            </LinearTextGradient>
-            </Pressable>
-
-          </Pressable>
-          
-          {/* <Text
-            style={{
-              fontSize: 18,
-              fontWeight: 'bold',
-              marginTop: 20,
-              textDecorationLine: 'underline',
-            }}
-            onPress={dangNhap}>
-            Quên mật khẩu
-          </Text> */}
-          <TouchableOpacity onPress={Register}>
-        {/* <Text style={styles.dangKyText}>
-          Bạn chưa có tài khoản? <Text style={{ textDecorationLine: 'underline' }}>Đăng ký ngay.</Text>
-        </Text> */}
-        <Pressable style={styles.btn1}>
-            <Pressable onPress={Register}>
-            <LinearTextGradient
-              style={{
-                fontSize: 20,
-                fontWeight: 'bold',
-              }}
-              locations={[0, 1]}
-              colors={['#5200FF', '#FF00B7']}
-              start={{x: 0, y: 0}}
-              end={{x: 1, y: 0}} >
-
-
-              <Text> Đăng ký</Text>
-              
-            </LinearTextGradient>
-            </Pressable>
-
-          </Pressable>
-      </TouchableOpacity>
+          <TouchableOpacity style={styles.btn} onPress={dangNhapNe}>
+            <Text style={{ color: '#fff', fontSize: 16 }}>Đăng nhập</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.btn1} onPress={dangKy}>
+            <Text style={{ color: '#5200FF', fontSize: 16 }}>Đăng ký</Text>
+          </TouchableOpacity>
         </View>
       </SafeAreaView>
     </ScrollView>
@@ -176,7 +73,6 @@ export default Login;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 30,
@@ -197,15 +93,8 @@ const styles = StyleSheet.create({
     height: 24,
     width: 24,
   },
-  text: {
-    fontSize: 40,
-    color: '#5200FF',
-    marginLeft: 5,
-    marginRight: 5,
-    marginTop: -5,
-  },
   logo: {
-    alignItems: 'center',
+    marginBottom: 20,
   },
   btn: {
     backgroundColor: '#5200FF',

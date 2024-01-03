@@ -1,5 +1,7 @@
 import { ScrollView, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import ViewPropTypes from 'deprecated-react-native-prop-types';
+
 
 const MedicalExaminationHistory = () => {
     return (
