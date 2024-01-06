@@ -52,9 +52,9 @@ const NavigatorWithAuth = () => {
           <Tab.Screen name="Home" component={Home} />
           <Tab.Screen name="Lich_kham" component={Lich_kham} />
           <Tab.Screen name="Ds_Lich_kham" component={Lichsukham} />
-          <Tab.Screen name="Listbenhan" component={Listbenhan} />
+          {/* <Tab.Screen name="Listbenhan" component={Listbenhan} /> */}
           <Tab.Screen name="Listdonthuoc" component={Don_thuoc} />
-          <Tab.Screen name="Infomation" component={Infomation} />
+          {/* <Tab.Screen name="Infomation" component={Infomation} /> */}
           <Tab.Screen name="ChatListScreen" component={ChatListScreen} />
           <Tab.Screen name="ChatScreen" component={ChatScreen} />
           {/* <Tab.Screen name="FeedbackListingScreen" component={FeedbackListingScreen} /> */}
@@ -80,7 +80,7 @@ const NavigatorWithAuth = () => {
         <Tab.Screen name="ChatScreen" component={ChatScreen} />
         <Tab.Screen name="Ds_Lich_kham" component={Lichsukham} />
         {/* <Tab.Screen name="ChatListScreen" component={ChatListScreen} /> */}
-        <Tab.Screen name="Listbenhan" component={Listbenhan} />
+        {/* <Tab.Screen name="Listbenhan" component={Listbenhan} /> */}
         {/* <Tab.Screen name="SocialScreem" component={SocialScreen} /> */}
         <Tab.Screen name="FeedbackScreen" component={FeedbackScreen} />
         {/* <Tab.Screen name="BmiCalculatorScreen" component={BmiCalculatorScreen} /> */}

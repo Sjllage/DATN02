@@ -45,7 +45,7 @@ const BmiCalculatorScreen = () => {
         value={weight}
         onChangeText={(text) => setWeight(text)}
       />
-      <Button title="Calculate BMI cm/kg" onPress={calculateBMI} />
+      <Button title="Calculate BMI cm/kg"  onPress={calculateBMI} />
       {bmiResult && <Text style={styles.result}>{bmiResult}</Text>}
     </View>
   );

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity, FlatList, Image, StyleSheet } from 'react-native';
-import ImagePicker from 'react-native-image-picker';
+import ImagePicker, { launchCamera } from 'react-native-image-picker';
 import { PermissionsAndroid } from 'react-native';
 import cameraImage from '../img/camera.png';
 
@@ -13,7 +13,10 @@ const ChatScreen = () => {
     // Set the initial system message when the component mounts
     setMessages([{ id: 1, text: 'Xin chào, Tôi có thể hỗ trợ gì cho anh/chị?', type: 'received' }]);
   }, []);
-
+  const capture = async () => {
+    const result = await launchCamera();
+    console.log(result);
+  }
   const sendMessage = () => {
     if (inputMessage.trim() !== '' || selectedImage) {
       const userMessage = {
@@ -98,7 +101,7 @@ const ChatScreen = () => {
         {selectedImage ? (
           <Image source={{ uri: selectedImage.uri }} style={styles.selectedImage} />
         ) : (
-          <TouchableOpacity onPress={pickImage}>
+          <TouchableOpacity onPress={capture}>
             <Image source={cameraImage} style={styles.cameraImage} />
           </TouchableOpacity>
         )}
