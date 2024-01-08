@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   header: {
-    backgroundColor: '#5200FF',
+    backgroundColor: '#32CD32',
     padding: 16,
     alignItems: 'center',
     marginBottom: 10,
@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
     color: '#000000', // Đổi màu chữ thành đen
   },
   sendButton: {
-    backgroundColor: '#5200FF',
+    backgroundColor: '#32CD32',
     borderRadius: 8,
     paddingVertical: 12,
     paddingHorizontal: 20,
