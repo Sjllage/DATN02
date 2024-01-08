@@ -57,11 +57,11 @@ const Home = () => {
     };
   
     const data1 = [
-      { id: '1', title: 'Liên Hệ', image: require('../img/ic_chiso1.png') },
+      { id: '1', title: 'Liên Hệ', image: require('../img/icon_mes.png') },
       // { id: '2', title: 'Tin tức', image: require('../img/ic_chiso1.png') },
-      { id: '5', title: 'Đặt lịch', image: require('../img/ic_chiso1.png') },
-      { id: '7', title: 'Đánh giá', image: require('../img/ic_chiso1.png') },
-      { id: '8', title: 'Hồ sơ', image: require('../img/ic_chiso1.png') },
+      { id: '5', title: 'Đặt lịch', image: require('../img/icon_calendar.png') },
+      { id: '7', title: 'Đánh giá', image: require('../img/icon_bell.png') },
+      { id: '8', title: 'Hồ sơ', image: require('../img/icon_user.png') },
       // Add more items as needed
     ];
   
