@@ -15,11 +15,11 @@ const Lichsukham = (props) => {
 
   return (
     <View style={styles.container}>
-      <LinearGradient colors={['#5200FF', '#FF00B7']} style={styles.header}>
+      <View style={styles.header}>
         <Pressable style={styles.button}>
           <Text style={styles.buttonText}>Lịch sử khám</Text>
         </Pressable>
-      </LinearGradient>
+      </View>
 
       <ScrollView contentContainerStyle={styles.contentContainer}>
         {[...Array(4).keys()].map((index) => (
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     marginLeft:'10'
   },
   header: {
-    backgroundColor: '#5200FF',
+    backgroundColor: '#32CD32',
     height: 60,
     alignItems: 'center',
     justifyContent: 'center',
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#fff',
     borderWidth: 1,
-    borderColor: '#5200FF',
+    borderColor: '#32CD32',
     height: 100,
     width: '80%',
     marginVertical: 10,

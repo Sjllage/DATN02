@@ -13,11 +13,11 @@ import LinearGradient from 'react-native-linear-gradient';
 const Lich_kham = () => {
   return (
     <View style={styles.container}>
-      <LinearGradient colors={['#5200FF', '#FF00B7']} style={styles.btn}>
+      <View style={styles.btn}>
         <Pressable>
           <Text style={styles.btnText}>Thông tin đặt khám</Text>
         </Pressable>
-      </LinearGradient>
+      </View>
 
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <View style={styles.datePickerContainer}>
@@ -66,11 +66,11 @@ const Lich_kham = () => {
           />
         </View>
 
-        <LinearGradient colors={['#5200FF', '#FF00B7']} style={styles.btn1}>
+        <View style={styles.btn1}>
           <Pressable>
             <Text style={styles.btnText}>Đặt lịch khám</Text>
           </Pressable>
-        </LinearGradient>
+        </View>
       </ScrollView>
     </View>
   );
@@ -81,13 +81,13 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   btn: {
-    backgroundColor: '#5200FF',
+    backgroundColor: '#32CD32',
     height: 60,
     alignItems: 'center',
     justifyContent: 'center',
   },
   btn1: {
-    backgroundColor: '#5200FF',
+    backgroundColor: '#32CD32',
     height: 60,
     alignItems: 'center',
     justifyContent: 'center',

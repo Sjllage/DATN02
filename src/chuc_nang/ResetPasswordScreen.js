@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   resetButton: {
-    backgroundColor: '#5200FF',
+    backgroundColor: '#32CD32',
     borderRadius: 8,
     padding: 12,
     alignItems: 'center',

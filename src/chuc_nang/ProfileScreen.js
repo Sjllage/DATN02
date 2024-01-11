@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
   menuItem: {
     padding: 16,
     borderWidth: 1,
-    borderColor: '#ddd',
+    borderColor: '#32CD32',
     borderRadius: 8,
     marginBottom: 10,
   },
