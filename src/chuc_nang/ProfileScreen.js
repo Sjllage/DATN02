@@ -15,8 +15,7 @@ const ProfileScreen = () => {
           />
         </View>
         <View style={styles.userInfoContainer}>
-          <Text style={[styles.title, { marginTop: 15, marginBottom: 5 }]}>John Doe</Text>
-          <Text style={styles.caption}>@jdoe</Text>
+          <Text style={[styles.title, { marginTop: 15, marginBottom: 5 }]}>Nguyễn Tuấn Kiệt</Text>
         </View>
       </View>
       <View style={styles.userInfoContainer}>

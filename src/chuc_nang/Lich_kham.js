@@ -6,6 +6,7 @@ import {
   Pressable,
   ScrollView,
   TextInput,
+  TouchableOpacity,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
@@ -67,9 +68,9 @@ const Lich_kham = () => {
         </View>
 
         <View style={styles.btn1}>
-          <Pressable>
+          <TouchableOpacity>
             <Text style={styles.btnText}>Đặt lịch khám</Text>
-          </Pressable>
+          </TouchableOpacity>
         </View>
       </ScrollView>
     </View>
