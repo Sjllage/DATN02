@@ -18,6 +18,7 @@ import SocialScreen from './src/chuc_nang/SocialScreem';
 import BmiCalculatorScreen from './src/chuc_nang/BmiCalculatorScreen';
 import ProfileScreen from './src/chuc_nang/ProfileScreen';
 import ChatListScreen from './src/chuc_nang/ChatListScreen';
+import NewsDetail from './src/chuc_nang/NewsDetail';
 import AppGrid from './src/Grid/AppGrid';
 import FeedbackListingScreen from './src/chuc_nang/FeedbackListingScreen';
 import ChangedProfileScreen from './src/chuc_nang/ChangedProfileScreen';
